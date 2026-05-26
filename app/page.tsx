@@ -8,7 +8,7 @@ const SEQUENCES = [
   {
     id: 'pars',
     region: 'Pars',
-    bg: '/images/backgrounds/Pars Background.png',
+    bg: '/images/backgrounds/Pars-Background.png',
     leftHero: {
       name: 'Sofen of Pars',
       src: '/images/sprites/Sofen of Pars (2).png',
@@ -23,11 +23,11 @@ const SEQUENCES = [
   {
     id: 'aklas',
     region: 'Aklas',
-    bg: '/images/backgrounds/Aklas Background.png',
+    bg: '/images/backgrounds/Aklas-Background.png',
     leftHero: {
       name: 'Vecta of Aklas',
       src: '/images/sprites/Vecta of Aklas (3).png',
-      glow: 'drop-shadow(0 0 35px rgba(239, 68, 68, 0.6)) drop-shadow(0 0 60px rgba(220, 38, 38, 0.4)) brightness(200%)'
+      glow: 'drop-shadow(0 0 35px rgba(239, 68, 68, 0.6)) drop-shadow(0 0 60px rgba(22, 163, 74, 0.4)) brightness(200%)'
     },
     rightHero: {
       name: 'Fiena of Aklas',
@@ -38,7 +38,7 @@ const SEQUENCES = [
   {
     id: 'aaran',
     region: 'Aaran',
-    bg: '/images/backgrounds/Aaran Background.png',
+    bg: '/images/backgrounds/Aaran-Background.png',
     leftHero: {
       name: 'Seib of Aaran',
       src: '/images/sprites/Seib of Aaran (3).png',
