@@ -1,57 +1,76 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import {
-  ScrollText,
-  Swords,
-  Users,
-  Sparkles,
-  ShoppingBag,
-  BookOpen,
-  Shield,
-} from "lucide-react";
+import { useState } from 'react';
+import Image from 'next/image';
+import * as motion from 'framer-motion/client';
 
-const traditions = [
-  { name: "Fire", desc: "Aggressive combat specialists focused on overwhelming pressure and destructive power." },
-  { name: "Water", desc: "Adaptive tacticians who manipulate tempo, control, and battlefield flow." },
-  { name: "Earth", desc: "Defensive warriors with unmatched resilience and battlefield presence." },
-  { name: "Arcane", desc: "Masters of mystical energy and unpredictable magical interactions." },
-  { name: "Shadow", desc: "Stealthy manipulators who specialize in deception and disruption." },
-  { name: "Light", desc: "Holy guardians focused on protection, healing, and strategic balance." },
-  { name: "Rune", desc: "Ancient scholars channeling powerful sigils and crafted enchantments." },
-  { name: "Astral", desc: "Cosmic entities capable of bending reality and transcending mortal limits." },
-];
-
-const features = [
+const SEQUENCES = [
   {
-    title: "Competitive Strategy",
-    desc: "Master tactical decisions, manage resources, and outplay your rivals.",
-    icon: Swords,
+    id: 'pars',
+    region: 'Pars',
+    bg: '/images/backgrounds/Pars Background.png',
+    leftHero: {
+      name: 'Sofen of Pars',
+      src: '/images/sprites/Sofen of Pars (2).png',
+      glow: 'drop-shadow(0 0 35px rgba(234, 179, 8, 0.6)) drop-shadow(0 0 60px rgba(249, 115, 22, 0.3)) brightness(200%)'
+    },
+    rightHero: {
+      name: 'Hais of Pars',
+      src: '/images/sprites/Hais of Pars (3).png',
+      glow: 'drop-shadow(0 0 35px rgba(147, 51, 234, 0.6)) drop-shadow(0 0 60px rgba(59, 130, 246, 0.3)) brightness(200%)'
+    }
   },
   {
-    title: "Unique Warbands",
-    desc: "Lead powerful factions with distinct playstyles and battlefield identities.",
-    icon: Shield,
+    id: 'aklas',
+    region: 'Aklas',
+    bg: '/images/backgrounds/Aklas Background.png',
+    leftHero: {
+      name: 'Vecta of Aklas',
+      src: '/images/sprites/Vecta of Aklas (3).png',
+      glow: 'drop-shadow(0 0 35px rgba(239, 68, 68, 0.6)) drop-shadow(0 0 60px rgba(220, 38, 38, 0.4)) brightness(200%)' // Crimson Crimson Glow
+    },
+    rightHero: {
+      name: 'Fiena of Aklas',
+      src: '/images/sprites/Fiena of Aklas (3).png',
+      glow: 'drop-shadow(0 0 35px rgba(20, 184, 166, 0.6)) drop-shadow(0 0 60px rgba(13, 148, 136, 0.4)) brightness(200%)' // Teal/Jade Glow
+    }
   },
   {
-    title: "Living World",
-    desc: "Discover a growing universe filled with lore, expansions, and new conflicts.",
-    icon: BookOpen,
-  },
+    id: 'aaran',
+    region: 'Aaran',
+    bg: '/images/backgrounds/Aaran Background.png',
+    leftHero: {
+      name: 'Seib of Aaran',
+      src: '/images/sprites/Seib of Aaran (3).png',
+      glow: 'drop-shadow(0 0 35px rgba(34, 197, 94, 0.6)) drop-shadow(0 0 60px rgba(22, 163, 74, 0.4)) brightness(200%)' // Emerald Green Glow
+    },
+    rightHero: {
+      name: 'Trok of Aaran',
+      src: '/images/sprites/Trok of Aaran (3).png',
+      glow: 'drop-shadow(0 0 35px rgba(249, 115, 22, 0.6)) drop-shadow(0 0 60px rgba(234, 88, 12, 0.4)) brightness(200%)' // Fiery Amber Glow
+    }
+  }
 ];
 
 export default function Page() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const active = SEQUENCES[activeIndex];
+
+  const nextSequence = () => {
+    setActiveIndex((prev) => (prev + 1) % SEQUENCES.length);
+  };
+
+  const prevSequence = () => {
+    setActiveIndex((prev) => (prev - 1 + SEQUENCES.length) % SEQUENCES.length);
+  };
+
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden font-sans">
 
       {/* NAVBAR */}
       <header className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10 bg-black/60 py-6">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-4 text-center">
-
-          {/* Centered Brand Column */}
           <div className="flex flex-col items-center gap-3">
-            {/* 50% Larger Emblem Container (144px / h-36 w-36) */}
             <div className="relative h-36 w-36 rounded-3xl overflow-hidden border border-yellow-400/20">
               <Image
                 src="/images/sprites/TotA Symbol 1.png"
@@ -68,8 +87,6 @@ export default function Page() {
                 }}
               />
             </div>
-
-            {/* Game Titles */}
             <div>
               <div className="font-black tracking-widest text-lg md:text-xl">
                 THRONE OF THE ASCENDANT
@@ -79,8 +96,6 @@ export default function Page() {
               </div>
             </div>
           </div>
-
-          {/* Navigation Links */}
           <nav className="flex gap-8 text-sm text-zinc-300 mt-2">
             <a href="#about" className="hover:text-white transition">About</a>
             <a href="#traditions" className="hover:text-white transition">Traditions</a>
@@ -88,232 +103,194 @@ export default function Page() {
             <a href="#lore" className="hover:text-white transition">Lore</a>
             <a href="#community" className="hover:text-white transition">Community</a>
           </nav>
-
         </div>
       </header>
 
-      {/* HERO */}
-      <section className="relative overflow-hidden">
+      {/* HERO HERO CONTAINER */}
+      <section className="relative h-[75vh] w-full overflow-hidden bg-zinc-950">
+        
+        {/* SEQUENCE WRAPPER (Handles seamless keyframe swaps) */}
+        <div key={active.id} className="absolute inset-0 w-full h-full">
+          
+          {/* BACKGROUND LANDSCAPE */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src={active.bg}
+              alt={`${active.region} Landscape`}
+              fill
+              className="object-cover transition-all duration-700"
+              priority
+            />
+            {/* Soft Ambient Overlay to blend text values */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
+          </div>
 
-        {/* BACKGROUND LAYERS */}
-        <div className="absolute inset-0 z-0">
+          {/* CHARACTERS OVERLAY */}
+          <div className="absolute inset-0 z-10 pointer-events-none">
 
-          <Image
-            src="/images/sprites/Pars Background.png"
-            alt="Background"
-            fill
-            priority
-            className="object-cover scale-110"
-          />
-
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-black/40 to-black" />
-          <div className="absolute inset-0 bg-yellow-500/10 blur-3xl animate-pulse" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_25%,black_85%)]" />
-        </div>
-
-{/* CHARACTERS */}
-        <div className="absolute inset-0 z-20 pointer-events-none">
-
-          {/* LEFT CHARACTER: Sofen of Pars */}
-          <motion.div
-            animate={{ x: [-10, 10, -10] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-0 left-[-6%] w-[58%] h-full group"
-          >
-            {/* Ethereal Power Glow (Behind) */}
-            <motion.div 
-              animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 transition-all duration-500 group-hover:brightness-150"
-              style={{
-                filter: 'drop-shadow(0 0 35px rgba(234, 179, 8, 0.6)) drop-shadow(0 0 60px rgba(249, 115, 22, 0.3)) brightness(200%)',
+            {/* LEFT CHARACTER */}
+            <motion.div
+              initial={{ x: -60, opacity: 0 }}
+              animate={{ x: [-10, 10, -10], opacity: 1 }}
+              transition={{ 
+                x: { duration: 12, repeat: Infinity, ease: "easeInOut" },
+                opacity: { duration: 0.5 }
               }}
+              className="absolute bottom-0 left-[-6%] w-[58%] h-full group"
             >
-              <Image
-                src="/images/sprites/Sofen of Pars (2).png"
-                alt="Left Hero Glow"
-                fill
-                style={{
-                  objectFit: 'contain',
-                  objectPosition: 'bottom',
-                  WebkitMaskImage: 'url("/images/sprites/Sofen of Pars (2).png")',
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskPosition: 'bottom',
-                  WebkitMaskRepeat: 'no-repeat',
-                  maskImage: 'url("/images/sprites/Sofen of Pars (2).png")',
-                  maskSize: 'contain',
-                  maskPosition: 'bottom',
-                  maskRepeat: 'no-repeat'
-                }}
-              />
+              {/* Elemental Aura Power Glow */}
+              <motion.div 
+                animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 transition-all duration-500 group-hover:brightness-150"
+                style={{ filter: active.leftHero.glow }}
+              >
+                <Image
+                  src={active.leftHero.src}
+                  alt={`${active.leftHero.name} Glow`}
+                  fill
+                  style={{
+                    objectFit: 'contain',
+                    objectPosition: 'bottom',
+                    WebkitMaskImage: `url("${active.leftHero.src}")`,
+                    WebkitMaskSize: 'contain',
+                    WebkitMaskPosition: 'bottom',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskImage: `url("${active.leftHero.src}")`,
+                    maskSize: 'contain',
+                    maskPosition: 'bottom',
+                    maskRepeat: 'no-repeat'
+                  }}
+                />
+              </motion.div>
+
+              {/* Standard Sprite Layer */}
+              <div className="absolute inset-0">
+                <Image
+                  src={active.leftHero.src}
+                  alt={active.leftHero.name}
+                  fill
+                  style={{
+                    objectFit: 'contain',
+                    objectPosition: 'bottom',
+                    WebkitMaskImage: `url("${active.leftHero.src}")`,
+                    WebkitMaskSize: 'contain',
+                    WebkitMaskPosition: 'bottom',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskImage: `url("${active.leftHero.src}")`,
+                    maskSize: 'contain',
+                    maskPosition: 'bottom',
+                    maskRepeat: 'no-repeat'
+                  }}
+                />
+              </div>
             </motion.div>
 
-            {/* True Character Artwork (Front) */}
-            <div className="absolute inset-0">
-              <Image
-                src="/images/sprites/Sofen of Pars (2).png"
-                alt="Left Hero"
-                fill
-                style={{
-                  objectFit: 'contain',
-                  objectPosition: 'bottom',
-                  WebkitMaskImage: 'url("/images/sprites/Sofen of Pars (2).png")',
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskPosition: 'bottom',
-                  WebkitMaskRepeat: 'no-repeat',
-                  maskImage: 'url("/images/sprites/Sofen of Pars (2).png")',
-                  maskSize: 'contain',
-                  maskPosition: 'bottom',
-                  maskRepeat: 'no-repeat'
-                }}
-              />
-            </div>
-          </motion.div>
-
-          {/* RIGHT CHARACTER: Hais of Pars */}
-          <motion.div
-            animate={{ x: [10, -10, 10] }}
-            transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-0 right-[-6%] w-[58%] h-full group"
-          >
-            {/* Ethereal Power Glow (Behind) */}
-            <motion.div 
-              animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 transition-all duration-500 group-hover:brightness-150"
-              style={{
-                filter: 'drop-shadow(0 0 35px rgba(147, 51, 234, 0.6)) drop-shadow(0 0 60px rgba(59, 130, 246, 0.3)) brightness(200%)',
+            {/* RIGHT CHARACTER */}
+            <motion.div
+              initial={{ x: 60, opacity: 0 }}
+              animate={{ x: [10, -10, 10], opacity: 1 }}
+              transition={{ 
+                x: { duration: 11, repeat: Infinity, ease: "easeInOut" },
+                opacity: { duration: 0.5 }
               }}
+              className="absolute bottom-0 right-[-6%] w-[58%] h-full group"
             >
-              <Image
-                src="/images/sprites/Hais of Pars (3).png"
-                alt="Right Hero Glow"
-                fill
-                style={{
-                  objectFit: 'contain',
-                  objectPosition: 'bottom',
-                  WebkitMaskImage: 'url("/images/sprites/Hais of Pars (3).png")',
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskPosition: 'bottom',
-                  WebkitMaskRepeat: 'no-repeat',
-                  maskImage: 'url("/images/sprites/Hais of Pars (3).png")',
-                  maskSize: 'contain',
-                  maskPosition: 'bottom',
-                  maskRepeat: 'no-repeat'
-                }}
-              />
+              {/* Elemental Aura Power Glow */}
+              <motion.div 
+                animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 transition-all duration-500 group-hover:brightness-150"
+                style={{ filter: active.rightHero.glow }}
+              >
+                <Image
+                  src={active.rightHero.src}
+                  alt={`${active.rightHero.name} Glow`}
+                  fill
+                  style={{
+                    objectFit: 'contain',
+                    objectPosition: 'bottom',
+                    WebkitMaskImage: `url("${active.rightHero.src}")`,
+                    WebkitMaskSize: 'contain',
+                    WebkitMaskPosition: 'bottom',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskImage: `url("${active.rightHero.src}")`,
+                    maskSize: 'contain',
+                    maskPosition: 'bottom',
+                    maskRepeat: 'no-repeat'
+                  }}
+                />
+              </motion.div>
+
+              {/* Standard Sprite Layer */}
+              <div className="absolute inset-0">
+                <Image
+                  src={active.rightHero.src}
+                  alt={active.rightHero.name}
+                  fill
+                  style={{
+                    objectFit: 'contain',
+                    objectPosition: 'bottom',
+                    WebkitMaskImage: `url("${active.rightHero.src}")`,
+                    WebkitMaskSize: 'contain',
+                    WebkitMaskPosition: 'bottom',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskImage: `url("${active.rightHero.src}")`,
+                    maskSize: 'contain',
+                    maskPosition: 'bottom',
+                    maskRepeat: 'no-repeat'
+                  }}
+                />
+              </div>
             </motion.div>
 
-            {/* True Character Artwork (Front) */}
-            <div className="absolute inset-0">
-              <Image
-                src="/images/sprites/Hais of Pars (3).png"
-                alt="Right Hero"
-                fill
-                style={{
-                  objectFit: 'contain',
-                  objectPosition: 'bottom',
-                  WebkitMaskImage: 'url("/images/sprites/Hais of Pars (3).png")',
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskPosition: 'bottom',
-                  WebkitMaskRepeat: 'no-repeat',
-                  maskImage: 'url("/images/sprites/Hais of Pars (3).png")',
-                  maskSize: 'contain',
-                  maskPosition: 'bottom',
-                  maskRepeat: 'no-repeat'
-                }}
-              />
-            </div>
-          </motion.div>
-
+          </div>
         </div>
 
-        {/* CONTENT */}
-        <div className="relative z-20 max-w-7xl mx-auto px-6 py-28 grid lg:grid-cols-2 gap-16 items-center">
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+        {/* INTERACTIVE NAVIGATION BUTTONS */}
+        <div className="absolute inset-x-0 bottom-8 z-30 flex items-center justify-between px-8 pointer-events-auto">
+          <button 
+            onClick={prevSequence}
+            className="px-4 py-2 rounded-xl bg-black/40 border border-white/10 backdrop-blur text-sm font-bold tracking-wider hover:bg-white hover:text-black transition uppercase"
           >
+            ← Prev Region
+          </button>
+          
+          {/* Active Cycle Status Pips */}
+          <div className="flex gap-2">
+            {SEQUENCES.map((seq, idx) => (
+              <button
+                key={seq.id}
+                onClick={() => setActiveIndex(idx)}
+                className={`h-2.5 rounded-full transition-all duration-300 ${idx === activeIndex ? 'w-8 bg-yellow-400' : 'w-2.5 bg-white/30'}`}
+                aria-label={`Go to sequence ${idx + 1}`}
+              />
+            ))}
+          </div>
 
-            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-yellow-500/30 bg-yellow-500/10 text-yellow-300 text-sm mb-6">
-              <Sparkles size={16} />
-              Tactical Fantasy Card Game
-            </div>
+          <button 
+            onClick={nextSequence}
+            className="px-4 py-2 rounded-xl bg-black/40 border border-white/10 backdrop-blur text-sm font-bold tracking-wider hover:bg-white hover:text-black transition uppercase"
+          >
+            Next Region →
+          </button>
+        </div>
 
-            <h1 className="text-6xl md:text-8xl font-black leading-[0.95]">
-              THRONE OF THE
-              <span className="block text-yellow-400">
-                ASCENDANT
-              </span>
-            </h1>
-
-            <p className="mt-8 text-xl text-zinc-300 max-w-2xl">
-              Command Warbands, dominate quests, and ascend above your rivals in a tactical fantasy card game.
-            </p>
-
-            <div className="mt-10 flex gap-4">
-              <button className="bg-yellow-400 text-black px-7 py-4 rounded-2xl font-black">
-                Join Discord
-              </button>
-              <button className="border border-white/20 px-7 py-4 rounded-2xl">
-                Download Rulebook
-              </button>
-            </div>
-
-          </motion.div>
-
+        {/* CURRENT REGION MARQUEE TEXT */}
+        <div className="absolute top-6 left-6 z-30 pointer-events-none bg-black/30 border border-white/5 backdrop-blur px-4 py-1.5 rounded-lg">
+          <span className="text-xs text-zinc-400 tracking-widest uppercase">Battleground:</span>
+          <h2 className="text-lg font-black tracking-wide text-yellow-400 uppercase">{active.region}</h2>
         </div>
 
       </section>
 
       {/* ABOUT */}
       <section id="about" className="max-w-7xl mx-auto px-6 py-24">
-        <h2 className="text-5xl font-black">About the Game</h2>
-        <p className="mt-6 text-zinc-400 max-w-2xl">
-          Tactical asymmetric card game focused on strategy, factions, and narrative depth.
+        <h2 className="text-5xl font-black uppercase">About the Game</h2>
+        <p className="mt-6 text-zinc-400 max-w-2xl text-lg leading-relaxed">
+          Throne of the Ascendant brings next-generation dark tactical fantasy to your browser. Prepare your heroes for battle across the shifting regional landscapes of Pars, Aklas, and Aaran.
         </p>
       </section>
-
-      {/* FEATURES */}
-      <section className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-3 gap-6">
-
-        {features.map((f) => {
-          const Icon = f.icon;
-
-          return (
-            <div key={f.title} className="p-6 border border-white/10 rounded-2xl bg-white/5">
-              <Icon className="text-yellow-400 mb-4" />
-              <h3 className="text-xl font-black">{f.title}</h3>
-              <p className="text-zinc-400 mt-2">{f.desc}</p>
-            </div>
-          );
-        })}
-
-      </section>
-
-      {/* TRADITIONS */}
-      <section id="traditions" className="border-y border-white/10 bg-zinc-950 px-6 py-24">
-
-        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-6">
-
-          {traditions.map((t) => (
-            <div key={t.name} className="p-6 rounded-2xl border border-white/10 bg-black/40">
-              <div className="text-yellow-400 text-2xl font-black">{t.name[0]}</div>
-              <div className="text-xl font-black mt-4">{t.name}</div>
-              <p className="text-zinc-400 text-sm mt-2">{t.desc}</p>
-            </div>
-          ))}
-
-        </div>
-
-      </section>
-
-      {/* FOOTER */}
-      <footer className="text-center py-10 text-zinc-500 text-sm border-t border-white/10">
-        THRONE OF THE ASCENDANT © 2026 Nitti Games
-      </footer>
 
     </div>
   );
