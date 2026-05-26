@@ -52,7 +52,6 @@ const SEQUENCES = [
   }
 ];
 
-// DYNAMIC LIST OF TRADITIONS
 const TRADITIONS = [
   "Pyric Tradition", "Tidal Tradition", "Terran Tradition", "Aerial Tradition",
   "Glacial Tradition", "Voltanic Tradition", "Ferric Tradition", "Verdant Tradition",
@@ -66,7 +65,6 @@ export default function Page() {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = SEQUENCES[activeIndex];
 
-  // Automatic 3-Second Timer
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % SEQUENCES.length);
@@ -337,10 +335,9 @@ export default function Page() {
             </p>
           </div>
 
-          {/* AUTO-GENERATED TRADITIONS GRID */}
+          {/* TRADITIONS GRID WITH CLOUD MIST VFX */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
             {TRADITIONS.map((name) => {
-              // Convert spaces to dashes cleanly for image path routing
               const fileName = name.replace(/\s+/g, '-');
               const imagePath = `/images/sprites/${fileName}.png`;
 
@@ -349,11 +346,39 @@ export default function Page() {
                   key={name}
                   className="group relative flex flex-col items-center bg-black/40 border border-white/5 hover:border-yellow-400/30 rounded-2xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-gradient-to-b hover:from-zinc-900 hover:to-black overflow-hidden"
                 >
-                  {/* Subtle Background Glow Ring */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_center,rgba(250,204,21,0.06)_0%,transparent_70%)] pointer-events-none" />
+                  {/* DENSE DYNAMIC CLOUD MIST CONTAINER */}
+                  <div className="absolute top-12 left-1/2 -translate-x-1/2 w-28 h-28 pointer-events-none select-none z-0">
+                    
+                    {/* Mist Layer 1: Base Ambient Cloud */}
+                    <div 
+                      className="absolute inset-0 rounded-full mix-blend-screen filter blur-xl opacity-35 group-hover:opacity-60 transition-opacity duration-500 animate-spin"
+                      style={{
+                        animationDuration: '10s',
+                        background: 'radial-gradient(circle at 35% 35%, rgba(63,63,70,0.8) 0%, rgba(39,39,42,0.4) 45%, transparent 70%)'
+                      }}
+                    />
 
-                  {/* Icon Frame Box */}
-                  <div className="relative h-16 w-16 mb-4 filter drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)] group-hover:drop-shadow-[0_0_15px_rgba(250,204,21,0.35)] transition-all duration-300 transform group-hover:scale-110">
+                    {/* Mist Layer 2: Counter-Rotating Dense Cloud Fog */}
+                    <div 
+                      className="absolute inset-[-10px] rounded-full mix-blend-screen filter blur-xl opacity-30 group-hover:opacity-75 transition-all duration-500 animate-spin"
+                      style={{
+                        animationDuration: '7s',
+                        animationDirection: 'reverse',
+                        background: 'radial-gradient(circle at 65% 65%, rgba(24,24,27,0.9) 0%, rgba(9,9,11,0.6) 50%, transparent 75%)'
+                      }}
+                    />
+
+                    {/* Mist Layer 3: Interactive Hotspot Center Spark */}
+                    <div 
+                      className="absolute inset-4 rounded-full mix-blend-screen filter blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300 animate-pulse"
+                      style={{
+                        background: 'radial-gradient(circle, rgba(250,204,21,0.25) 0%, rgba(251,146,60,0.05) 50%, transparent 100%)'
+                      }}
+                    />
+                  </div>
+
+                  {/* Icon Frame Box (Raised up via z-10 so it floats on top of the mist) */}
+                  <div className="relative h-16 w-16 mb-4 z-10 filter drop-shadow-[0_5px_10px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_0_20px_rgba(250,204,21,0.4)] transition-all duration-300 transform group-hover:scale-110">
                     <Image
                       src={imagePath}
                       alt={`${name} emblem`}
@@ -365,7 +390,7 @@ export default function Page() {
                   </div>
 
                   {/* Card Label */}
-                  <h3 className="text-xs md:text-sm font-bold tracking-wide text-zinc-300 group-hover:text-yellow-400 transition-colors duration-300 uppercase line-clamp-2">
+                  <h3 className="text-xs md:text-sm font-bold tracking-wide text-zinc-300 group-hover:text-yellow-400 transition-colors duration-300 uppercase line-clamp-2 z-10">
                     {name}
                   </h3>
                 </div>
