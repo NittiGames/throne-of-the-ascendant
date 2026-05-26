@@ -76,6 +76,8 @@ export default function Page() {
                 src="/images/sprites/TotA Symbol 1.png"
                 alt="Logo"
                 fill
+                sizes="144px"
+                loading="eager"
                 className="object-contain"
                 style={{
                   WebkitMaskImage: 'url("/images/sprites/TotA Symbol 1.png")',
@@ -106,26 +108,23 @@ export default function Page() {
         </div>
       </header>
 
-      {/* HERO HERO CONTAINER */}
+      {/* HERO CONTAINER */}
       <section className="relative h-[650px] w-full overflow-hidden bg-zinc-950">
         
         {/* DYNAMIC REGION CONTAINER */}
         <div key={active.id} className="absolute inset-0 w-full h-full">
           
-          {/* BACKGROUND LAYER (Strict quotes around image url string) */}
+          {/* BACKGROUND LAYER */}
           <div 
-            className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-700 ease-in-out"
-            style={{ 
-              backgroundImage: `url("${active.bg}")`,
-              zIndex: 1
-            }}
+            className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-700 ease-in-out z-0"
+            style={{ backgroundImage: `url("${active.bg}")` }}
           >
             {/* Soft Ambient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" style={{ zIndex: 2 }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
           </div>
 
           {/* CHARACTERS OVERLAY */}
-          <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
+          <div className="absolute inset-0 w-full h-full z-10 pointer-events-none">
 
             {/* LEFT CHARACTER */}
             <motion.div
@@ -148,6 +147,7 @@ export default function Page() {
                   src={active.leftHero.src}
                   alt="Left Hero Glow"
                   fill
+                  sizes="50vw"
                   style={{
                     objectFit: 'contain',
                     objectPosition: 'bottom',
@@ -169,6 +169,8 @@ export default function Page() {
                   src={active.leftHero.src}
                   alt={active.leftHero.name}
                   fill
+                  sizes="50vw"
+                  loading="eager"
                   style={{
                     objectFit: 'contain',
                     objectPosition: 'bottom',
@@ -206,6 +208,7 @@ export default function Page() {
                   src={active.rightHero.src}
                   alt="Right Hero Glow"
                   fill
+                  sizes="50vw"
                   style={{
                     objectFit: 'contain',
                     objectPosition: 'bottom',
@@ -227,6 +230,8 @@ export default function Page() {
                   src={active.rightHero.src}
                   alt={active.rightHero.name}
                   fill
+                  sizes="50vw"
+                  loading="eager"
                   style={{
                     objectFit: 'contain',
                     objectPosition: 'bottom',
