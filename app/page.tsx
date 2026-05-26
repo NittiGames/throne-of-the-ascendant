@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import * as motion from 'framer-motion/client';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const SEQUENCES = [
   {
@@ -68,9 +68,8 @@ export default function Page() {
   useEffect(() => {
     const timer = setInterval(() => {
       nextSequence();
-    }, 3000); // 3000ms = 3 seconds
+    }, 3000);
 
-    // Clean up timer if the user leaves the page to prevent memory leaks
     return () => clearInterval(timer);
   }, []);
 
@@ -121,151 +120,165 @@ export default function Page() {
       {/* HERO CONTAINER */}
       <section className="relative h-[650px] w-full overflow-hidden bg-black">
         
-        {/* DYNAMIC REGION CONTAINER */}
-        <div key={active.id} className="absolute inset-0 w-full h-full">
+        {/* ANIMATE PRESENCE WRAPPER FOR CROSS-FADE */}
+        <AnimatePresence mode="popLayout">
           
-          {/* HIGH-VISIBILITY COMPONENT BACKGROUND LAYER */}
-          <div className="absolute inset-0 w-full h-full z-0">
-            <Image
-              src={active.bg}
-              alt={`${active.region} Landscape Background`}
-              fill
-              priority
-              unoptimized
-              className="object-cover object-center"
-              sizes="100vw"
-            />
-            {/* Ambient Dark Atmospheric Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50 z-10" />
-          </div>
+          <motion.div 
+            key={active.id} 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full"
+          >
+            
+            {/* BACKGROUND LAYER */}
+            <div className="absolute inset-0 w-full h-full z-0">
+              <Image
+                src={active.bg}
+                alt={`${active.region} Landscape Background`}
+                fill
+                priority
+                unoptimized
+                className="object-cover object-center"
+                sizes="100vw"
+              />
+              {/* Ambient Dark Atmospheric Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50 z-10" />
+            </div>
 
-          {/* CHARACTERS OVERLAY */}
-          <div className="absolute inset-0 w-full h-full z-20 pointer-events-none">
+            {/* CHARACTERS OVERLAY */}
+            <div className="absolute inset-0 w-full h-full z-20 pointer-events-none">
 
-            {/* LEFT CHARACTER */}
-            <motion.div
-              initial={{ x: -40, opacity: 0 }}
-              animate={{ x: [-10, 10, -10], opacity: 1 }}
-              transition={{ 
-                x: { duration: 12, repeat: Infinity, ease: "easeInOut" },
-                opacity: { duration: 0.4 }
-              }}
-              className="absolute bottom-0 left-[-6%] w-[58%] h-full group"
-            >
-              {/* Glow Behind */}
-              <motion.div 
-                animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 transition-all duration-500 group-hover:brightness-150"
-                style={{ filter: active.leftHero.glow }}
+              {/* LEFT CHARACTER */}
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: [-10, 10, -10], opacity: 1 }}
+                exit={{ x: -20, opacity: 0 }}
+                transition={{ 
+                  x: { duration: 12, repeat: Infinity, ease: "easeInOut" },
+                  opacity: { duration: 0.6 },
+                  exit: { duration: 0.4 }
+                }}
+                className="absolute bottom-0 left-[-6%] w-[58%] h-full group"
               >
-                <Image
-                  src={active.leftHero.src}
-                  alt="Left Hero Glow"
-                  fill
-                  sizes="50vw"
-                  style={{
-                    objectFit: 'contain',
-                    objectPosition: 'bottom',
-                    WebkitMaskImage: `url("${active.leftHero.src}")`,
-                    WebkitMaskSize: 'contain',
-                    WebkitMaskPosition: 'bottom',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskImage: `url("${active.leftHero.src}")`,
-                    maskSize: 'contain',
-                    maskPosition: 'bottom',
-                    maskRepeat: 'no-repeat'
-                  }}
-                />
+                {/* Glow Behind */}
+                <motion.div 
+                  animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 transition-all duration-500 group-hover:brightness-150"
+                  style={{ filter: active.leftHero.glow }}
+                >
+                  <Image
+                    src={active.leftHero.src}
+                    alt="Left Hero Glow"
+                    fill
+                    sizes="50vw"
+                    style={{
+                      objectFit: 'contain',
+                      objectPosition: 'bottom',
+                      WebkitMaskImage: `url("${active.leftHero.src}")`,
+                      WebkitMaskSize: 'contain',
+                      WebkitMaskPosition: 'bottom',
+                      WebkitMaskRepeat: 'no-repeat',
+                      maskImage: `url("${active.leftHero.src}")`,
+                      maskSize: 'contain',
+                      maskPosition: 'bottom',
+                      maskRepeat: 'no-repeat'
+                    }}
+                  />
+                </motion.div>
+
+                {/* True Asset Front */}
+                <div className="absolute inset-0">
+                  <Image
+                    src={active.leftHero.src}
+                    alt={active.leftHero.name}
+                    fill
+                    sizes="50vw"
+                    loading="eager"
+                    style={{
+                      objectFit: 'contain',
+                      objectPosition: 'bottom',
+                      WebkitMaskImage: `url("${active.leftHero.src}")`,
+                      WebkitMaskSize: 'contain',
+                      WebkitMaskPosition: 'bottom',
+                      WebkitMaskRepeat: 'no-repeat',
+                      maskImage: `url("${active.leftHero.src}")`,
+                      maskSize: 'contain',
+                      maskPosition: 'bottom',
+                      maskRepeat: 'no-repeat'
+                    }}
+                  />
+                </div>
               </motion.div>
 
-              {/* True Asset Front */}
-              <div className="absolute inset-0">
-                <Image
-                  src={active.leftHero.src}
-                  alt={active.leftHero.name}
-                  fill
-                  sizes="50vw"
-                  loading="eager"
-                  style={{
-                    objectFit: 'contain',
-                    objectPosition: 'bottom',
-                    WebkitMaskImage: `url("${active.leftHero.src}")`,
-                    WebkitMaskSize: 'contain',
-                    WebkitMaskPosition: 'bottom',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskImage: `url("${active.leftHero.src}")`,
-                    maskSize: 'contain',
-                    maskPosition: 'bottom',
-                    maskRepeat: 'no-repeat'
-                  }}
-                />
-              </div>
-            </motion.div>
-
-            {/* RIGHT CHARACTER */}
-            <motion.div
-              initial={{ x: 40, opacity: 0 }}
-              animate={{ x: [10, -10, 10], opacity: 1 }}
-              transition={{ 
-                x: { duration: 11, repeat: Infinity, ease: "easeInOut" },
-                opacity: { duration: 0.4 }
-              }}
-              className="absolute bottom-0 right-[-6%] w-[58%] h-full group"
-            >
-              {/* Glow Behind */}
-              <motion.div 
-                animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 transition-all duration-500 group-hover:brightness-150"
-                style={{ filter: active.rightHero.glow }}
+              {/* RIGHT CHARACTER */}
+              <motion.div
+                initial={{ x: 20, opacity: 0 }}
+                animate={{ x: [10, -10, 10], opacity: 1 }}
+                exit={{ x: 20, opacity: 0 }}
+                transition={{ 
+                  x: { duration: 11, repeat: Infinity, ease: "easeInOut" },
+                  opacity: { duration: 0.6 },
+                  exit: { duration: 0.4 }
+                }}
+                className="absolute bottom-0 right-[-6%] w-[58%] h-full group"
               >
-                <Image
-                  src={active.rightHero.src}
-                  alt="Right Hero Glow"
-                  fill
-                  sizes="50vw"
-                  style={{
-                    objectFit: 'contain',
-                    objectPosition: 'bottom',
-                    WebkitMaskImage: `url("${active.rightHero.src}")`,
-                    WebkitMaskSize: 'contain',
-                    WebkitMaskPosition: 'bottom',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskImage: `url("${active.rightHero.src}")`,
-                    maskSize: 'contain',
-                    maskPosition: 'bottom',
-                    maskRepeat: 'no-repeat'
-                  }}
-                />
+                {/* Glow Behind */}
+                <motion.div 
+                  animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 transition-all duration-500 group-hover:brightness-150"
+                  style={{ filter: active.rightHero.glow }}
+                >
+                  <Image
+                    src={active.rightHero.src}
+                    alt="Right Hero Glow"
+                    fill
+                    sizes="50vw"
+                    style={{
+                      objectFit: 'contain',
+                      objectPosition: 'bottom',
+                      WebkitMaskImage: `url("${active.rightHero.src}")`,
+                      WebkitMaskSize: 'contain',
+                      WebkitMaskPosition: 'bottom',
+                      WebkitMaskRepeat: 'no-repeat',
+                      maskImage: `url("${active.rightHero.src}")`,
+                      maskSize: 'contain',
+                      maskPosition: 'bottom',
+                      maskRepeat: 'no-repeat'
+                    }}
+                  />
+                </motion.div>
+
+                {/* True Asset Front */}
+                <div className="absolute inset-0">
+                  <Image
+                    src={active.rightHero.src}
+                    alt={active.rightHero.name}
+                    fill
+                    sizes="50vw"
+                    loading="eager"
+                    style={{
+                      objectFit: 'contain',
+                      objectPosition: 'bottom',
+                      WebkitMaskImage: `url("${active.rightHero.src}")`,
+                      WebkitMaskSize: 'contain',
+                      WebkitMaskPosition: 'bottom',
+                      WebkitMaskRepeat: 'no-repeat',
+                      maskImage: `url("${active.rightHero.src}")`,
+                      maskSize: 'contain',
+                      maskPosition: 'bottom',
+                      maskRepeat: 'no-repeat'
+                    }}
+                  />
+                </div>
               </motion.div>
 
-              {/* True Asset Front */}
-              <div className="absolute inset-0">
-                <Image
-                  src={active.rightHero.src}
-                  alt={active.rightHero.name}
-                  fill
-                  sizes="50vw"
-                  loading="eager"
-                  style={{
-                    objectFit: 'contain',
-                    objectPosition: 'bottom',
-                    WebkitMaskImage: `url("${active.rightHero.src}")`,
-                    WebkitMaskSize: 'contain',
-                    WebkitMaskPosition: 'bottom',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskImage: `url("${active.rightHero.src}")`,
-                    maskSize: 'contain',
-                    maskPosition: 'bottom',
-                    maskRepeat: 'no-repeat'
-                  }}
-                />
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
 
         {/* INTERACTIVE NAVIGATION BUTTONS */}
         <div className="absolute inset-x-0 bottom-8 z-30 flex items-center justify-between px-8 pointer-events-auto">
@@ -299,7 +312,18 @@ export default function Page() {
         {/* CURRENT REGION MARQUEE TEXT */}
         <div className="absolute top-6 left-6 z-30 pointer-events-none bg-black/50 border border-white/10 backdrop-blur px-4 py-1.5 rounded-lg">
           <span className="text-xs text-zinc-400 tracking-widest uppercase">Battleground:</span>
-          <h2 className="text-lg font-black tracking-wide text-yellow-400 uppercase">{active.region}</h2>
+          <AnimatePresence mode="wait">
+            <motion.h2 
+              key={active.region}
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 5 }}
+              transition={{ duration: 0.3 }}
+              className="text-lg font-black tracking-wide text-yellow-400 uppercase"
+            >
+              {active.region}
+            </motion.h2>
+          </AnimatePresence>
         </div>
 
       </section>
