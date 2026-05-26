@@ -109,22 +109,28 @@ export default function Page() {
       </header>
 
       {/* HERO CONTAINER */}
-      <section className="relative h-[650px] w-full overflow-hidden bg-zinc-950">
+      <section className="relative h-[650px] w-full overflow-hidden bg-black">
         
         {/* DYNAMIC REGION CONTAINER */}
         <div key={active.id} className="absolute inset-0 w-full h-full">
           
-          {/* BACKGROUND LAYER */}
-          <div 
-            className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-700 ease-in-out z-0"
-            style={{ backgroundImage: `url("${active.bg}")` }}
-          >
-            {/* Soft Ambient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
+          {/* HIGH-VISIBILITY COMPONENT BACKGROUND LAYER */}
+          <div className="absolute inset-0 w-full h-full z-0">
+            <Image
+              src={active.bg}
+              alt={`${active.region} Landscape Background`}
+              fill
+              priority
+              unoptimized
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+            {/* Ambient Dark Atmospheric Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50 z-10" />
           </div>
 
           {/* CHARACTERS OVERLAY */}
-          <div className="absolute inset-0 w-full h-full z-10 pointer-events-none">
+          <div className="absolute inset-0 w-full h-full z-20 pointer-events-none">
 
             {/* LEFT CHARACTER */}
             <motion.div
