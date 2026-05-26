@@ -27,12 +27,12 @@ const SEQUENCES = [
     leftHero: {
       name: 'Vecta of Aklas',
       src: '/images/sprites/Vecta of Aklas (3).png',
-      glow: 'drop-shadow(0 0 35px rgba(239, 68, 68, 0.6)) drop-shadow(0 0 60px rgba(220, 38, 38, 0.4)) brightness(200%)' // Crimson Crimson Glow
+      glow: 'drop-shadow(0 0 35px rgba(239, 68, 68, 0.6)) drop-shadow(0 0 60px rgba(220, 38, 38, 0.4)) brightness(200%)'
     },
     rightHero: {
       name: 'Fiena of Aklas',
       src: '/images/sprites/Fiena of Aklas (3).png',
-      glow: 'drop-shadow(0 0 35px rgba(20, 184, 166, 0.6)) drop-shadow(0 0 60px rgba(13, 148, 136, 0.4)) brightness(200%)' // Teal/Jade Glow
+      glow: 'drop-shadow(0 0 35px rgba(20, 184, 166, 0.6)) drop-shadow(0 0 60px rgba(13, 148, 136, 0.4)) brightness(200%)'
     }
   },
   {
@@ -42,12 +42,12 @@ const SEQUENCES = [
     leftHero: {
       name: 'Seib of Aaran',
       src: '/images/sprites/Seib of Aaran (3).png',
-      glow: 'drop-shadow(0 0 35px rgba(34, 197, 94, 0.6)) drop-shadow(0 0 60px rgba(22, 163, 74, 0.4)) brightness(200%)' // Emerald Green Glow
+      glow: 'drop-shadow(0 0 35px rgba(34, 197, 94, 0.6)) drop-shadow(0 0 60px rgba(22, 163, 74, 0.4)) brightness(200%)'
     },
     rightHero: {
       name: 'Trok of Aaran',
       src: '/images/sprites/Trok of Aaran (3).png',
-      glow: 'drop-shadow(0 0 35px rgba(249, 115, 22, 0.6)) drop-shadow(0 0 60px rgba(234, 88, 12, 0.4)) brightness(200%)' // Fiery Amber Glow
+      glow: 'drop-shadow(0 0 35px rgba(249, 115, 22, 0.6)) drop-shadow(0 0 60px rgba(234, 88, 12, 0.4)) brightness(200%)'
     }
   }
 ];
@@ -107,38 +107,38 @@ export default function Page() {
       </header>
 
       {/* HERO HERO CONTAINER */}
-      <section className="relative h-[75vh] w-full overflow-hidden bg-zinc-950">
+      <section className="relative h-[80vh] w-full overflow-hidden bg-black">
         
-        {/* SEQUENCE WRAPPER (Handles seamless keyframe swaps) */}
-        <div key={active.id} className="absolute inset-0 w-full h-full">
-          
-          {/* BACKGROUND LANDSCAPE */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src={active.bg}
-              alt={`${active.region} Landscape`}
-              fill
-              className="object-cover transition-all duration-700"
-              priority
-            />
-            {/* Soft Ambient Overlay to blend text values */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
-          </div>
+        {/* BACKGROUND LANDSCAPE (Locked outside the dynamic loop block to guarantee stability) */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+          <Image
+            src={active.bg.toString()}
+            alt="Region Landscape"
+            fill
+            className="object-cover transition-opacity duration-500"
+            sizes="100vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
+        </div>
 
+        {/* SEQUENCE WRAPPER FOR SPRITES */}
+        <div key={active.id} className="absolute inset-0 w-full h-full z-10">
+          
           {/* CHARACTERS OVERLAY */}
-          <div className="absolute inset-0 z-10 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none">
 
             {/* LEFT CHARACTER */}
             <motion.div
-              initial={{ x: -60, opacity: 0 }}
+              initial={{ x: -40, opacity: 0 }}
               animate={{ x: [-10, 10, -10], opacity: 1 }}
               transition={{ 
                 x: { duration: 12, repeat: Infinity, ease: "easeInOut" },
-                opacity: { duration: 0.5 }
+                opacity: { duration: 0.4 }
               }}
               className="absolute bottom-0 left-[-6%] w-[58%] h-full group"
             >
-              {/* Elemental Aura Power Glow */}
+              {/* Glow Behind */}
               <motion.div 
                 animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -146,8 +146,8 @@ export default function Page() {
                 style={{ filter: active.leftHero.glow }}
               >
                 <Image
-                  src={active.leftHero.src}
-                  alt={`${active.leftHero.name} Glow`}
+                  src={active.leftHero.src.toString()}
+                  alt="Left Hero Glow"
                   fill
                   style={{
                     objectFit: 'contain',
@@ -164,134 +164,13 @@ export default function Page() {
                 />
               </motion.div>
 
-              {/* Standard Sprite Layer */}
+              {/* True Asset Front */}
               <div className="absolute inset-0">
                 <Image
-                  src={active.leftHero.src}
+                  src={active.leftHero.src.toString()}
                   alt={active.leftHero.name}
                   fill
                   style={{
                     objectFit: 'contain',
                     objectPosition: 'bottom',
-                    WebkitMaskImage: `url("${active.leftHero.src}")`,
-                    WebkitMaskSize: 'contain',
-                    WebkitMaskPosition: 'bottom',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskImage: `url("${active.leftHero.src}")`,
-                    maskSize: 'contain',
-                    maskPosition: 'bottom',
-                    maskRepeat: 'no-repeat'
-                  }}
-                />
-              </div>
-            </motion.div>
-
-            {/* RIGHT CHARACTER */}
-            <motion.div
-              initial={{ x: 60, opacity: 0 }}
-              animate={{ x: [10, -10, 10], opacity: 1 }}
-              transition={{ 
-                x: { duration: 11, repeat: Infinity, ease: "easeInOut" },
-                opacity: { duration: 0.5 }
-              }}
-              className="absolute bottom-0 right-[-6%] w-[58%] h-full group"
-            >
-              {/* Elemental Aura Power Glow */}
-              <motion.div 
-                animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 transition-all duration-500 group-hover:brightness-150"
-                style={{ filter: active.rightHero.glow }}
-              >
-                <Image
-                  src={active.rightHero.src}
-                  alt={`${active.rightHero.name} Glow`}
-                  fill
-                  style={{
-                    objectFit: 'contain',
-                    objectPosition: 'bottom',
-                    WebkitMaskImage: `url("${active.rightHero.src}")`,
-                    WebkitMaskSize: 'contain',
-                    WebkitMaskPosition: 'bottom',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskImage: `url("${active.rightHero.src}")`,
-                    maskSize: 'contain',
-                    maskPosition: 'bottom',
-                    maskRepeat: 'no-repeat'
-                  }}
-                />
-              </motion.div>
-
-              {/* Standard Sprite Layer */}
-              <div className="absolute inset-0">
-                <Image
-                  src={active.rightHero.src}
-                  alt={active.rightHero.name}
-                  fill
-                  style={{
-                    objectFit: 'contain',
-                    objectPosition: 'bottom',
-                    WebkitMaskImage: `url("${active.rightHero.src}")`,
-                    WebkitMaskSize: 'contain',
-                    WebkitMaskPosition: 'bottom',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskImage: `url("${active.rightHero.src}")`,
-                    maskSize: 'contain',
-                    maskPosition: 'bottom',
-                    maskRepeat: 'no-repeat'
-                  }}
-                />
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
-
-        {/* INTERACTIVE NAVIGATION BUTTONS */}
-        <div className="absolute inset-x-0 bottom-8 z-30 flex items-center justify-between px-8 pointer-events-auto">
-          <button 
-            onClick={prevSequence}
-            className="px-4 py-2 rounded-xl bg-black/40 border border-white/10 backdrop-blur text-sm font-bold tracking-wider hover:bg-white hover:text-black transition uppercase"
-          >
-            ← Prev Region
-          </button>
-          
-          {/* Active Cycle Status Pips */}
-          <div className="flex gap-2">
-            {SEQUENCES.map((seq, idx) => (
-              <button
-                key={seq.id}
-                onClick={() => setActiveIndex(idx)}
-                className={`h-2.5 rounded-full transition-all duration-300 ${idx === activeIndex ? 'w-8 bg-yellow-400' : 'w-2.5 bg-white/30'}`}
-                aria-label={`Go to sequence ${idx + 1}`}
-              />
-            ))}
-          </div>
-
-          <button 
-            onClick={nextSequence}
-            className="px-4 py-2 rounded-xl bg-black/40 border border-white/10 backdrop-blur text-sm font-bold tracking-wider hover:bg-white hover:text-black transition uppercase"
-          >
-            Next Region →
-          </button>
-        </div>
-
-        {/* CURRENT REGION MARQUEE TEXT */}
-        <div className="absolute top-6 left-6 z-30 pointer-events-none bg-black/30 border border-white/5 backdrop-blur px-4 py-1.5 rounded-lg">
-          <span className="text-xs text-zinc-400 tracking-widest uppercase">Battleground:</span>
-          <h2 className="text-lg font-black tracking-wide text-yellow-400 uppercase">{active.region}</h2>
-        </div>
-
-      </section>
-
-      {/* ABOUT */}
-      <section id="about" className="max-w-7xl mx-auto px-6 py-24">
-        <h2 className="text-5xl font-black uppercase">About the Game</h2>
-        <p className="mt-6 text-zinc-400 max-w-2xl text-lg leading-relaxed">
-          Throne of the Ascendant brings next-generation dark tactical fantasy to your browser. Prepare your heroes for battle across the shifting regional landscapes of Pars, Aklas, and Aaran.
-        </p>
-      </section>
-
-    </div>
-  );
-}
+                    WebkitMaskImage: `url("${active.
