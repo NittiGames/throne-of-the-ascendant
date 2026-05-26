@@ -107,26 +107,25 @@ export default function Page() {
       </header>
 
       {/* HERO HERO CONTAINER */}
-      <section className="relative h-[80vh] w-full overflow-hidden bg-black">
+      <section className="relative h-[650px] w-full overflow-hidden bg-zinc-950">
         
-        {/* BACKGROUND LANDSCAPE */}
-        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
-          <Image
-            src={active.bg.toString()}
-            alt="Region Landscape"
-            fill
-            className="object-cover transition-opacity duration-500"
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
-        </div>
-
-        {/* SEQUENCE WRAPPER FOR SPRITES */}
-        <div key={active.id} className="absolute inset-0 w-full h-full z-10">
+        {/* DYNAMIC REGION CONTAINER */}
+        <div key={active.id} className="absolute inset-0 w-full h-full">
           
+          {/* BACKGROUND LAYER (Strict quotes around image url string) */}
+          <div 
+            className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-700 ease-in-out"
+            style={{ 
+              backgroundImage: `url("${active.bg}")`,
+              zIndex: 1
+            }}
+          >
+            {/* Soft Ambient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" style={{ zIndex: 2 }} />
+          </div>
+
           {/* CHARACTERS OVERLAY */}
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
 
             {/* LEFT CHARACTER */}
             <motion.div
@@ -146,7 +145,7 @@ export default function Page() {
                 style={{ filter: active.leftHero.glow }}
               >
                 <Image
-                  src={active.leftHero.src.toString()}
+                  src={active.leftHero.src}
                   alt="Left Hero Glow"
                   fill
                   style={{
@@ -167,7 +166,7 @@ export default function Page() {
               {/* True Asset Front */}
               <div className="absolute inset-0">
                 <Image
-                  src={active.leftHero.src.toString()}
+                  src={active.leftHero.src}
                   alt={active.leftHero.name}
                   fill
                   style={{
@@ -204,7 +203,7 @@ export default function Page() {
                 style={{ filter: active.rightHero.glow }}
               >
                 <Image
-                  src={active.rightHero.src.toString()}
+                  src={active.rightHero.src}
                   alt="Right Hero Glow"
                   fill
                   style={{
@@ -225,7 +224,7 @@ export default function Page() {
               {/* True Asset Front */}
               <div className="absolute inset-0">
                 <Image
-                  src={active.rightHero.src.toString()}
+                  src={active.rightHero.src}
                   alt={active.rightHero.name}
                   fill
                   style={{
