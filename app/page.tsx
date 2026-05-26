@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Master Data Registry for the Carousel States
 const SEQUENCES = [
   {
     id: 'pars',
@@ -52,27 +53,21 @@ const SEQUENCES = [
   }
 ];
 
+// Complete Registry of the 23 Combat Traditions (Including Rehma)
 const TRADITIONS = [
   "Pyric Tradition", "Tidal Tradition", "Terran Tradition", "Aerial Tradition",
   "Glacial Tradition", "Voltanic Tradition", "Ferric Tradition", "Verdant Tradition",
   "Arcanic Tradition", "Luminous Tradition", "Umbral Tradition", "Ethereal Tradition",
   "Astral Tradition", "Demonic Tradition", "Runic Tradition", "Psionic Tradition",
   "Cosmic Tradition", "Ancestral Tradition", "Draconic Tradition", "Martial Tradition",
-  "Venomous Tradition", "Radiant Core Tradition", // ADDED REHMA TRADITION TO YOUR DATA MASTER REGISTRY
-const TRADITIONS = [
-  "Pyric Tradition", "Tidal Tradition", "Terran Tradition", "Aerial Tradition",
-  "Glacial Tradition", "Voltanic Tradition", "Ferric Tradition", "Verdant Tradition",
-  "Arcanic Tradition", "Luminous Tradition", "Umbral Tradition", "Ethereal Tradition",
-  "Astral Tradition", "Demonic Tradition", "Runic Tradition", "Psionic Tradition",
-  "Cosmic Tradition", "Ancestral Tradition", "Draconic Tradition", "Martial Tradition",
-  "Venomous Tradition", "Radiant Core Tradition", "Rehma Tradition" 
-];
+  "Venomous Tradition", "Radiant Core Tradition", "Rehma Tradition"
 ];
 
 export default function Page() {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = SEQUENCES[activeIndex];
 
+  // Automatic 3-Second Loop Controller
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % SEQUENCES.length);
@@ -91,14 +86,14 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden font-sans select-none">
 
-      {/* NAVBAR */}
+      {/* FIXED BLURRED HUD NAVIGATION BAR */}
       <header className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10 bg-black/60 py-6">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-4 text-center">
           <div className="flex flex-col items-center gap-3">
             <div className="relative h-36 w-36 rounded-3xl overflow-hidden border border-yellow-400/20">
               <Image
                 src="/images/sprites/TotA Symbol 1.png"
-                alt="Logo"
+                alt="Throne of the Ascendant Crest Logo"
                 fill
                 sizes="144px"
                 loading="eager"
@@ -132,7 +127,7 @@ export default function Page() {
         </div>
       </header>
 
-      {/* HERO CONTAINER */}
+      {/* CINEMATIC HERO SLIDER CONTAINER */}
       <section className="relative h-[650px] w-full overflow-hidden bg-black">
         <AnimatePresence mode="popLayout">
           <motion.div 
@@ -143,7 +138,7 @@ export default function Page() {
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="absolute inset-0 w-full h-full"
           >
-            {/* BACKGROUND LAYER */}
+            {/* BACKGROUND LANDSCAPE ENVIRONMENT LAYER */}
             <div className="absolute inset-0 w-full h-full z-0">
               <Image
                 src={active.bg}
@@ -157,9 +152,10 @@ export default function Page() {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50 z-10" />
             </div>
 
-            {/* CHARACTERS OVERLAY */}
+            {/* FLOATING HERO GRAPHICS FIELD LAYER */}
             <div className="absolute inset-0 w-full h-full z-20 pointer-events-none">
-              {/* LEFT CHARACTER */}
+              
+              {/* LEFT COMBATANT LAYER */}
               <motion.div
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: [-10, 10, -10], opacity: 1 }}
@@ -171,6 +167,7 @@ export default function Page() {
                 }}
                 className="absolute bottom-0 left-[-6%] w-[58%] h-full group"
               >
+                {/* Rear Dynamic Aura Glow Overlay */}
                 <motion.div 
                   animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -179,7 +176,7 @@ export default function Page() {
                 >
                   <Image
                     src={active.leftHero.src}
-                    alt="Left Hero Glow"
+                    alt="Left Hero Glow Matrix"
                     fill
                     sizes="50vw"
                     style={{
@@ -196,6 +193,7 @@ export default function Page() {
                     }}
                   />
                 </motion.div>
+                {/* Foreground Sharp Native Component Asset */}
                 <div className="absolute inset-0">
                   <Image
                     src={active.leftHero.src}
@@ -219,7 +217,7 @@ export default function Page() {
                 </div>
               </motion.div>
 
-              {/* RIGHT CHARACTER */}
+              {/* RIGHT COMBATANT LAYER */}
               <motion.div
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: [10, -10, 10], opacity: 1 }}
@@ -231,6 +229,7 @@ export default function Page() {
                 }}
                 className="absolute bottom-0 right-[-6%] w-[58%] h-full group"
               >
+                {/* Rear Dynamic Aura Glow Overlay */}
                 <motion.div 
                   animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
                   transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
@@ -239,7 +238,7 @@ export default function Page() {
                 >
                   <Image
                     src={active.rightHero.src}
-                    alt="Right Hero Glow"
+                    alt="Right Hero Glow Matrix"
                     fill
                     sizes="50vw"
                     style={{
@@ -256,6 +255,7 @@ export default function Page() {
                     }}
                   />
                 </motion.div>
+                {/* Foreground Sharp Native Component Asset */}
                 <div className="absolute inset-0">
                   <Image
                     src={active.rightHero.src}
@@ -278,11 +278,12 @@ export default function Page() {
                   />
                 </div>
               </motion.div>
+
             </div>
           </motion.div>
         </AnimatePresence>
 
-        {/* NAVIGATION BUTTONS */}
+        {/* INTERACTIVE NAVIGATION CONTROL NODES */}
         <div className="absolute inset-x-0 bottom-8 z-30 flex items-center justify-between px-8 pointer-events-auto">
           <button 
             onClick={prevSequence}
@@ -308,7 +309,7 @@ export default function Page() {
           </button>
         </div>
 
-        {/* MARQUEE TEXT */}
+        {/* ACTIVE HUD ENVIRONMENTAL MARQUEE */}
         <div className="absolute top-6 left-6 z-30 pointer-events-none bg-black/50 border border-white/10 backdrop-blur px-4 py-1.5 rounded-lg">
           <span className="text-xs text-zinc-400 tracking-widest uppercase">Battleground:</span>
           <AnimatePresence mode="wait">
@@ -326,7 +327,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* TRADITIONS CODEX SECTION */}
+      {/* COMBAT TRADITIONS EXPERIMENTAL GRID SYSTEM */}
       <section id="traditions" className="bg-zinc-950 border-y border-white/5 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-8 mb-12">
@@ -339,11 +340,11 @@ export default function Page() {
               </h2>
             </div>
             <p className="text-zinc-400 max-w-md text-sm md:text-base leading-relaxed">
-              Unlock unique tactical thresholds across twenty-two custom combat pathways to adapt your army's composition and conquer your rival's formations.
+              Unlock unique tactical thresholds across twenty-three custom combat pathways to adapt your army's composition and conquer your rival's formations.
             </p>
           </div>
 
-          {/* TRADITIONS GRID WITH CLOUD MIST VFX */}
+          {/* TRADITIONS MIST MODULE INTEGRATED SYSTEM GRID */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
             {TRADITIONS.map((name) => {
               const fileName = name.replace(/\s+/g, '-');
@@ -354,10 +355,10 @@ export default function Page() {
                   key={name}
                   className="group relative flex flex-col items-center bg-black/40 border border-white/5 hover:border-yellow-400/30 rounded-2xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-gradient-to-b hover:from-zinc-900 hover:to-black overflow-hidden"
                 >
-                  {/* DENSE DYNAMIC CLOUD MIST CONTAINER */}
+                  {/* DENSE VAPOR REAR CLOUD EFFECT MATRIX */}
                   <div className="absolute top-12 left-1/2 -translate-x-1/2 w-28 h-28 pointer-events-none select-none z-0">
                     
-                    {/* Mist Layer 1: Base Ambient Cloud */}
+                    {/* Layer 1: Ambient Slow Base Smoke Ring */}
                     <div 
                       className="absolute inset-0 rounded-full mix-blend-screen filter blur-xl opacity-35 group-hover:opacity-60 transition-opacity duration-500 animate-spin"
                       style={{
@@ -366,7 +367,7 @@ export default function Page() {
                       }}
                     />
 
-                    {/* Mist Layer 2: Counter-Rotating Dense Cloud Fog */}
+                    {/* Layer 2: Fast Counter-Rotating Dense Fog Wall */}
                     <div 
                       className="absolute inset-[-10px] rounded-full mix-blend-screen filter blur-xl opacity-30 group-hover:opacity-75 transition-all duration-500 animate-spin"
                       style={{
@@ -376,7 +377,7 @@ export default function Page() {
                       }}
                     />
 
-                    {/* Mist Layer 3: Interactive Hotspot Center Spark */}
+                    {/* Layer 3: Reactive Hover Inner Amber Ember Spark */}
                     <div 
                       className="absolute inset-4 rounded-full mix-blend-screen filter blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300 animate-pulse"
                       style={{
@@ -385,11 +386,11 @@ export default function Page() {
                     />
                   </div>
 
-                  {/* Icon Frame Box (Raised up via z-10 so it floats on top of the mist) */}
+                  {/* EMBLEM EMBOSS FRAME BOX LAYER */}
                   <div className="relative h-16 w-16 mb-4 z-10 filter drop-shadow-[0_5px_10px_rgba(0,0,0,0.8)] group-hover:drop-shadow-[0_0_20px_rgba(250,204,21,0.4)] transition-all duration-300 transform group-hover:scale-110">
                     <Image
                       src={imagePath}
-                      alt={`${name} emblem`}
+                      alt={`${name} emblem graphic`}
                       fill
                       unoptimized
                       sizes="64px"
@@ -397,7 +398,7 @@ export default function Page() {
                     />
                   </div>
 
-                  {/* Card Label */}
+                  {/* CARD TITLE LABEL TEXT */}
                   <h3 className="text-xs md:text-sm font-bold tracking-wide text-zinc-300 group-hover:text-yellow-400 transition-colors duration-300 uppercase line-clamp-2 z-10">
                     {name}
                   </h3>
@@ -408,7 +409,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ABOUT */}
+      {/* CORE GENERAL BRAND OVERVIEW INFO BLOCK SECTION */}
       <section id="about" className="max-w-7xl mx-auto px-6 py-24">
         <h2 className="text-5xl font-black uppercase">About the Game</h2>
         <p className="mt-6 text-zinc-400 max-w-2xl text-lg leading-relaxed">
