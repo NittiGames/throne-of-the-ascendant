@@ -112,54 +112,118 @@ export default function Page() {
         </div>
 
 {/* CHARACTERS */}
-        <div className="absolute inset-0 z-10 pointer-events-none">
+        <div className="absolute inset-0 z-20 pointer-events-none">
 
+          {/* LEFT CHARACTER: Sofen of Pars */}
           <motion.div
             animate={{ x: [-10, 10, -10] }}
-            transition={{ duration: 12, repeat: Infinity }}
-            className="absolute bottom-0 left-[-6%] w-[58%] h-full"
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-0 left-[-6%] w-[58%] h-full group"
           >
-            <Image
-              src="/images/sprites/Sofen of Pars (2).png"
-              alt="Left Hero"
-              fill
+            {/* Ethereal Power Glow (Behind) */}
+            <motion.div 
+              animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 transition-all duration-500 group-hover:brightness-150"
               style={{
-                objectFit: 'contain',
-                objectPosition: 'bottom',
-                WebkitMaskImage: 'url("/images/sprites/Sofen of Pars (2).png")',
-                WebkitMaskSize: 'contain',
-                WebkitMaskPosition: 'bottom',
-                WebkitMaskRepeat: 'no-repeat',
-                maskImage: 'url("/images/sprites/Sofen of Pars (2).png")',
-                maskSize: 'contain',
-                maskPosition: 'bottom',
-                maskRepeat: 'no-repeat'
+                filter: 'drop-shadow(0 0 35px rgba(234, 179, 8, 0.6)) drop-shadow(0 0 60px rgba(249, 115, 22, 0.3)) brightness(200%)',
               }}
-            />
+            >
+              <Image
+                src="/images/sprites/Sofen of Pars (2).png"
+                alt="Left Hero Glow"
+                fill
+                style={{
+                  objectFit: 'contain',
+                  objectPosition: 'bottom',
+                  WebkitMaskImage: 'url("/images/sprites/Sofen of Pars (2).png")',
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskPosition: 'bottom',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskImage: 'url("/images/sprites/Sofen of Pars (2).png")',
+                  maskSize: 'contain',
+                  maskPosition: 'bottom',
+                  maskRepeat: 'no-repeat'
+                }}
+              />
+            </motion.div>
+
+            {/* True Character Artwork (Front) */}
+            <div className="absolute inset-0">
+              <Image
+                src="/images/sprites/Sofen of Pars (2).png"
+                alt="Left Hero"
+                fill
+                style={{
+                  objectFit: 'contain',
+                  objectPosition: 'bottom',
+                  WebkitMaskImage: 'url("/images/sprites/Sofen of Pars (2).png")',
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskPosition: 'bottom',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskImage: 'url("/images/sprites/Sofen of Pars (2).png")',
+                  maskSize: 'contain',
+                  maskPosition: 'bottom',
+                  maskRepeat: 'no-repeat'
+                }}
+              />
+            </div>
           </motion.div>
 
+          {/* RIGHT CHARACTER: Hais of Pars */}
           <motion.div
             animate={{ x: [10, -10, 10] }}
-            transition={{ duration: 11, repeat: Infinity }}
-            className="absolute bottom-0 right-[-6%] w-[58%] h-full"
+            transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-0 right-[-6%] w-[58%] h-full group"
           >
-            <Image
-              src="/images/sprites/Hais of Pars (3).png"
-              alt="Right Hero"
-              fill
+            {/* Ethereal Power Glow (Behind) */}
+            <motion.div 
+              animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.99, 1.02, 0.99] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 transition-all duration-500 group-hover:brightness-150"
               style={{
-                objectFit: 'contain',
-                objectPosition: 'bottom',
-                WebkitMaskImage: 'url("/images/sprites/Hais of Pars (3).png")',
-                WebkitMaskSize: 'contain',
-                WebkitMaskPosition: 'bottom',
-                WebkitMaskRepeat: 'no-repeat',
-                maskImage: 'url("/images/sprites/Hais of Pars (3).png")',
-                maskSize: 'contain',
-                maskPosition: 'bottom',
-                maskRepeat: 'no-repeat'
+                filter: 'drop-shadow(0 0 35px rgba(147, 51, 234, 0.6)) drop-shadow(0 0 60px rgba(59, 130, 246, 0.3)) brightness(200%)',
               }}
-            />
+            >
+              <Image
+                src="/images/sprites/Hais of Pars (3).png"
+                alt="Right Hero Glow"
+                fill
+                style={{
+                  objectFit: 'contain',
+                  objectPosition: 'bottom',
+                  WebkitMaskImage: 'url("/images/sprites/Hais of Pars (3).png")',
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskPosition: 'bottom',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskImage: 'url("/images/sprites/Hais of Pars (3).png")',
+                  maskSize: 'contain',
+                  maskPosition: 'bottom',
+                  maskRepeat: 'no-repeat'
+                }}
+              />
+            </motion.div>
+
+            {/* True Character Artwork (Front) */}
+            <div className="absolute inset-0">
+              <Image
+                src="/images/sprites/Hais of Pars (3).png"
+                alt="Right Hero"
+                fill
+                style={{
+                  objectFit: 'contain',
+                  objectPosition: 'bottom',
+                  WebkitMaskImage: 'url("/images/sprites/Hais of Pars (3).png")',
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskPosition: 'bottom',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskImage: 'url("/images/sprites/Hais of Pars (3).png")',
+                  maskSize: 'contain',
+                  maskPosition: 'bottom',
+                  maskRepeat: 'no-repeat'
+                }}
+              />
+            </div>
           </motion.div>
 
         </div>
