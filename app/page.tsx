@@ -46,43 +46,47 @@ export default function Page() {
     <div className="min-h-screen bg-black text-white overflow-hidden font-sans">
 
       {/* NAVBAR */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10 bg-black/60">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <header className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10 bg-black/60 py-6">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-4 text-center">
 
-          <div className="flex items-center gap-3">
-            <div className="relative h-12 w-12 rounded-xl overflow-hidden border border-yellow-400/20">
+          {/* Centered Brand Column */}
+          <div className="flex flex-col items-center gap-3">
+            {/* 50% Larger Emblem Container (144px / h-36 w-36) */}
+            <div className="relative h-36 w-36 rounded-3xl overflow-hidden border border-yellow-400/20">
               <Image
                 src="/images/sprites/TotA Symbol 1.png"
                 alt="Logo"
                 fill
+                className="object-contain"
                 style={{
-                  objectFit: 'cover',
                   WebkitMaskImage: 'url("/images/sprites/TotA Symbol 1.png")',
-                  WebkitMaskSize: 'cover',
+                  WebkitMaskSize: 'contain',
                   WebkitMaskRepeat: 'no-repeat',
                   maskImage: 'url("/images/sprites/TotA Symbol 1.png")',
-                  maskSize: 'cover',
+                  maskSize: 'contain',
                   maskRepeat: 'no-repeat'
                 }}
               />
             </div>
 
+            {/* Game Titles */}
             <div>
-              <div className="font-black tracking-wide">
+              <div className="font-black tracking-widest text-lg md:text-xl">
                 THRONE OF THE ASCENDANT
               </div>
-              <div className="text-xs text-zinc-500 uppercase tracking-[0.25em]">
+              <div className="text-xs text-zinc-500 uppercase tracking-[0.3em] mt-1">
                 By Nitti Games
               </div>
             </div>
           </div>
 
-          <nav className="hidden md:flex gap-8 text-sm text-zinc-300">
-            <a href="#about">About</a>
-            <a href="#traditions">Traditions</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#lore">Lore</a>
-            <a href="#community">Community</a>
+          {/* Navigation Links */}
+          <nav className="flex gap-8 text-sm text-zinc-300 mt-2">
+            <a href="#about" className="hover:text-white transition">About</a>
+            <a href="#traditions" className="hover:text-white transition">Traditions</a>
+            <a href="#gallery" className="hover:text-white transition">Gallery</a>
+            <a href="#lore" className="hover:text-white transition">Lore</a>
+            <a href="#community" className="hover:text-white transition">Community</a>
           </nav>
 
         </div>
