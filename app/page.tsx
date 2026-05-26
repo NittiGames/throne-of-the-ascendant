@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import * as motion from 'framer-motion/client';
 
@@ -8,8 +8,7 @@ const SEQUENCES = [
   {
     id: 'pars',
     region: 'Pars',
-    // Updated from /backgrounds/ to /sprites/
-    bg: '/images/sprites/Pars-Background.png', 
+    bg: '/images/sprites/Pars-Background.png',
     leftHero: {
       name: 'Sofen of Pars',
       src: '/images/sprites/Sofen of Pars (2).png',
@@ -24,7 +23,6 @@ const SEQUENCES = [
   {
     id: 'aklas',
     region: 'Aklas',
-    // Updated from /backgrounds/ to /sprites/
     bg: '/images/sprites/Aklas-Background.png',
     leftHero: {
       name: 'Vecta of Aklas',
@@ -40,7 +38,6 @@ const SEQUENCES = [
   {
     id: 'aaran',
     region: 'Aaran',
-    // Updated from /backgrounds/ to /sprites/
     bg: '/images/sprites/Aaran-Background.png',
     leftHero: {
       name: 'Seib of Aaran',
@@ -66,6 +63,16 @@ export default function Page() {
   const prevSequence = () => {
     setActiveIndex((prev) => (prev - 1 + SEQUENCES.length) % SEQUENCES.length);
   };
+
+  // AUTOMATIC 3-SECOND TIMER ROUTINE
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSequence();
+    }, 3000); // 3000ms = 3 seconds
+
+    // Clean up timer if the user leaves the page to prevent memory leaks
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden font-sans">
