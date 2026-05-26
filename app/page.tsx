@@ -58,7 +58,15 @@ const TRADITIONS = [
   "Arcanic Tradition", "Luminous Tradition", "Umbral Tradition", "Ethereal Tradition",
   "Astral Tradition", "Demonic Tradition", "Runic Tradition", "Psionic Tradition",
   "Cosmic Tradition", "Ancestral Tradition", "Draconic Tradition", "Martial Tradition",
-  "Venomous Tradition", "Radiant Core Tradition"
+  "Venomous Tradition", "Radiant Core Tradition", // ADDED REHMA TRADITION TO YOUR DATA MASTER REGISTRY
+const TRADITIONS = [
+  "Pyric Tradition", "Tidal Tradition", "Terran Tradition", "Aerial Tradition",
+  "Glacial Tradition", "Voltanic Tradition", "Ferric Tradition", "Verdant Tradition",
+  "Arcanic Tradition", "Luminous Tradition", "Umbral Tradition", "Ethereal Tradition",
+  "Astral Tradition", "Demonic Tradition", "Runic Tradition", "Psionic Tradition",
+  "Cosmic Tradition", "Ancestral Tradition", "Draconic Tradition", "Martial Tradition",
+  "Venomous Tradition", "Radiant Core Tradition", "Rehma Tradition" 
+];
 ];
 
 export default function Page() {
