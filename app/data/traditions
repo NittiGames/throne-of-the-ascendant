@@ -87,52 +87,7 @@ export const TRADITIONS_DATA = {
       }
     ]
   },
-  "Terran Tradition": {
-    sealed: false,
-    subtitle: "The Weight of the World",
-    summary: "Masters of the Terran Tradition do not 'cast' spells. Instead, they command the very foundation of the realm. They manipulate tectonic stress, gravitational density, and the crystalline structure of the earth itself. A Terran master does not dodge. Why would a mountain dodge a pebble? They simply endure. Their magic is characterized by a heavy, resonant silence—the feeling of being deep underground, where the pressure is absolute and the air is thick with the scent of ozone and ancient mineral.",
-    bloodlineTitle: "The Bloodlines of the Stone",
-    bloodlines: [
-      {
-        faction: "The Vault-Keepers of Maers",
-        epithet: "The Iron-Rooted",
-        description: "Maers, known for its harbor, also hides the deep Terran vaults beneath its streets. The Maers Terran practitioners view the earth as a series of interlocking locks and seals.",
-        showcaseTitle: "The Endurance of Galts",
-        showcaseDesc: "Galts of Maers embodies the transition from a nimble skirmisher to a living fortress. A high Terran master, Galts does not just hold his ground; he is the ground. When he adopts a defensive stance, the earth around his feet calcifies, and his own skin takes on the hardness of granite. He is the master of the 'Stone Vault,' a tactical state where his presence creates an area of absolute spatial denial that no enemy can breach without shattering their own weapons."
-      },
-      {
-        faction: "The Wardens of Toran",
-        epithet: "The Living Granite",
-        description: "Toran is a city of stubborn stone-wardens, where the Terran Tradition is synonymous with duty and the defense of ancient oaths.",
-        showcaseTitle: "The Resilience of Pilos",
-        showcaseDesc: "Pilos of Toran practices a more spiritual, meditative form of the Terran path. He speaks to the earth, feeling the vibrations of footsteps miles away. Pilos represents the 'Stone Council' philosophy—a style of combat that is entirely reactive. He waits for the opponent to exhaust themselves against his defenses, only striking when the enemy’s own momentum has betrayed them."
-      }
-    ],
-    threat: {
-      title: "The Apex Threat: The Tectonic Colossus",
-      summary: "The Terran Dominators—Bicomatan, Arsnat, and Poxelgrave—are not beasts that run or hunt. They are moving mountains. They cause earthquakes simply by existing. When a Terran Dominator is active, the entire terrain of the battlefield changes. Paths close, new walls of obsidian rise from the ground, and the very gravity of the area feels heavier.",
-      bossName: "Poxelgrave",
-      bossImage: "/images/sprites/Poxelgrave.png",
-      bossDesc: "To slay a Terran Dominator is to participate in an epic struggle against the land itself. A Warband must essentially 'quarry' these behemoths, chipping away at their impenetrable defenses until their inner, tectonic Heart—which glows with the heat of the planet's core—is exposed."
-    },
-    relics: [
-      {
-        name: "The Aegis of Toran",
-        type: "Tower Shield",
-        description: "A tower shield carved from a single, seamless block of living basalt. It does not just stop blows; it absorbs the energy, feeding it back into the ground and causing the surrounding earth to tremor, knocking back anyone standing nearby."
-      },
-      {
-        name: "Shard of the Earth-Heart",
-        type: "Pulsating Gemstone",
-        description: "A jagged, pulsating gemstone that, when touched, anchors the wielder to the immediate environment. It makes the user physically impossible to lift or push, turning them into an immovable object, even against the crushing waves of a Tidal master."
-      },
-      {
-        name: "The Seismic Maul",
-        type: "Two-Handed Weapon",
-        description: "A heavy, two-handed weapon made of blackened volcanic glass. Every time it strikes the ground, it sends a localized shockwave through the feet of every nearby enemy, disrupting their balance and shattering their focus."
-      }
-    ]
-  },
+  "Terran Tradition": { sealed: true },
   "Voltanic Tradition": { sealed: true },
   "Aerial Tradition": { sealed: true },
   "Glacial Tradition": { sealed: true },
