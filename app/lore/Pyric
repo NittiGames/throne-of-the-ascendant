@@ -1,4 +1,5 @@
-// app/lore/Pyric.js
+'use client';
+
 export default function PyricTradition() {
   return (
     <>

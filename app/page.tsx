@@ -3,18 +3,13 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import dynamic from 'next/dynamic';
 
-// Dynamically import lore components only when needed
-const TraditionComponents = {
-  "Pyric Tradition": dynamic(() => import('./lore/Pyric'), { 
-    loading: () => <p className="text-zinc-500 text-center py-12">Unsealing archives...</p> 
-  }),
-  // As you create new files, uncomment/add them exactly like this:
-  // "Tidal Tradition": dynamic(() => import('./lore/Tidal')),
-  // "Terran Tradition": dynamic(() => import('./lore/Terran')),
-  // "Voltanic Tradition": dynamic(() => import('./lore/Voltanic')),
-};
+// 1. Use standard, static imports instead of next/dynamic
+import PyricLore from './lore/Pyric';
+
+// As you create new tradition files, import them statically right here:
+// import TidalLore from './lore/Tidal';
+// import TerranLore from './lore/Terran';
 
 const SEQUENCES = [
   {
@@ -67,18 +62,16 @@ export default function Page() {
   const prevSequence = () => { setActiveIndex((prev) => (prev - 1 + SEQUENCES.length) % SEQUENCES.length); };
 
   const renderTraditionLore = (name) => {
-    const DynamicComponent = TraditionComponents[name];
-    
-    // If we have a file mapped for it, render the file
-    if (DynamicComponent) {
-      return <DynamicComponent />;
-    }
+    // Direct conditional mapping
+    if (name === "Pyric Tradition") return <PyricLore />;
+    // if (name === "Tidal Tradition") return <TidalLore />;
+    // if (name === "Terran Tradition") return <TerranLore />;
 
     // Default Fallback for traditions without dedicated files yet
     return (
       <div className="flex flex-col items-center justify-center py-24 text-center">
         <div className="relative h-24 w-24 mb-6 opacity-30 grayscale filter blur-[1px]">
-          <Image src={`/images/sprites/${name.replace(/\s+/g, '-')}.png`} alt={name} fill className="object-contain" />
+          <Image src={`/images/sprites/${name.replace(/\s+/g, '-')}.png`} alt={name} fill sizes="96px" className="object-contain" />
         </div>
         <h3 className="text-2xl font-black text-zinc-400 uppercase tracking-widest mb-3">Archives Sealed</h3>
         <p className="text-zinc-500 max-w-md text-sm md:text-base leading-relaxed">
