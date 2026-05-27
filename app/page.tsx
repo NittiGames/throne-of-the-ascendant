@@ -4,12 +4,8 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// 1. Use standard, static imports instead of next/dynamic
+// Static Import
 import PyricLore from './lore/Pyric';
-
-// As you create new tradition files, import them statically right here:
-// import TidalLore from './lore/Tidal';
-// import TerranLore from './lore/Terran';
 
 const SEQUENCES = [
   {
@@ -62,12 +58,8 @@ export default function Page() {
   const prevSequence = () => { setActiveIndex((prev) => (prev - 1 + SEQUENCES.length) % SEQUENCES.length); };
 
   const renderTraditionLore = (name) => {
-    // Direct conditional mapping
     if (name === "Pyric Tradition") return <PyricLore />;
-    // if (name === "Tidal Tradition") return <TidalLore />;
-    // if (name === "Terran Tradition") return <TerranLore />;
 
-    // Default Fallback for traditions without dedicated files yet
     return (
       <div className="flex flex-col items-center justify-center py-24 text-center">
         <div className="relative h-24 w-24 mb-6 opacity-30 grayscale filter blur-[1px]">
