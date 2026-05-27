@@ -1,156 +1,265 @@
-// app/data/traditions.js
-export const TRADITIONS_DATA = {
-  "Pyric Tradition": {
-    sealed: false,
-    subtitle: "The Silver Eclipse",
-    summary: "In the world of Throne of the Ascendant, the Pyric Tradition is rarely a chaotic, roaring inferno. For those who truly master it, fire is elegant, precise, and devoid of smoke. It is the blinding, silver-white heat of a dying star set against a pitch-black sky. To walk this path is to learn the art of total consumption—burning away one's own hesitations, flaws, and worldly attachments until only pure, focused intent remains.",
-    bloodlineTitle: "The Bloodlines of Flame",
-    bloodlines: [
-      {
-        faction: "The Scholars of Aaran",
-        epithet: "The Silver Flame",
-        description: "In the deep, shadowed foundries of Aaran, fire is treated as a severe science. The Initiates here are taught to weave Arcanic geometry into their flames, binding raw, destructive heat into razor-sharp edges and focused points.",
-        showcaseTitle: "The Ascent of Trok",
-        showcaseDesc: "We see this philosophy perfectly realized in the journey of Trok of Aaran. In his youth, his flame is an unruly spark—raw and aggressive, but ultimately undisciplined. As he endures the trials of the realm and sheds his reckless nature, he reaches the absolute pinnacle of Ascendant mastery. In this final state, he no longer swings a blade of heavy steel. Instead, he wields a concentrated, blinding arc of thermal energy. A single, silent strike from Trok can sever the thickest iron armor of an enemy warlord, leaving no ash behind, only a glowing silver seam."
-      },
-      {
-        faction: "The Hearthguard of Noren",
-        epithet: "The Iron Resolve",
-        description: "If Aaran represents the cutting edge of the flame, Noren represents its enduring, unyielding warmth. The defenders of Noren use the Pyric Tradition not just to destroy, but to fuel their indomitable spirit, standing as living bulwarks against the creeping dark.",
-        showcaseTitle: "The Crucible of Vaan",
-        showcaseDesc: "Vaan of Noren does not cast fire outward; he contains it. His heavy, blackened armor serves as a walking furnace. The overwhelming, god-like physical might he brings to the battlefield comes from an internal, terrifying heat that pushes his mortal body far beyond its natural limits. When Vaan speaks in the dead of night, his voice carries the comforting, commanding crackle of a hearth, capable of incinerating fear and igniting absolute loyalty in the hearts of routing soldiers."
-      }
-    ],
-    threat: {
-      title: "The Apex Threat: The Corrupted Ash",
-      summary: "The ultimate test for any Pyric master is confronting the twisted, god-like entities of their own element. The lesser Dominators, Galaath and Sofaldart, are devastating forces of nature, but the true nightmare of the realm is the alpha entity.",
-      bossName: "Aspholghert",
-      bossImage: "/images/sprites/Aspholghert.png",
-      bossDesc: "Aspholghert represents an apocalyptic, world-ending heat. This Dominator does not glow; it is an entity of suffocating, oily black cinder that consumes light itself. When Aspholghert marches, the ambient temperature rises so drastically that rivers instantly boil into steam and stone fortresses run like wax. To survive Aspholghert, defeat it, and claim its crystallized Heart is to prove that a Warband's inner flame is pure enough to incinerate corruption itself."
-    },
-    relics: [
-      {
-        name: "The Silver Ignis",
-        type: "Prestige Longsword",
-        description: "A minimalist longsword devoid of a crossguard, featuring a sleek obsidian hilt. It does not burst into ostentatious, roaring flames. Instead, the silver blade hums softly, heating to a microscopic, white-hot degree that allows it to slide through iron and bone as if they were silk."
-      },
-      {
-        name: "Mantle of the White Ember",
-        type: "Conceptual Shroud",
-        description: "A dark, flowing cloak woven from the conceptual threads of absolute combustion. It protects its wearer not with physical weight or armor plating, but by instantly converting the kinetic energy of any incoming physical strike into a harmless, dissipating flash of heat."
-      }
-    ]
+'use client';
+
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { TRADITIONS_DATA } from './data/traditions';
+
+const SEQUENCES = [
+  {
+    id: 'pars',
+    region: 'Pars',
+    bg: '/images/sprites/Pars-Background.png',
+    leftHero: { name: 'Sofen of Pars', src: '/images/sprites/Sofen of Pars (2).png', glow: 'drop-shadow(0 0 35px rgba(234, 179, 8, 0.6))' },
+    rightHero: { name: 'Hais of Pars', src: '/images/sprites/Hais of Pars (3).png', glow: 'drop-shadow(0 0 35px rgba(147, 51, 234, 0.6))' }
   },
-  "Tidal Tradition": {
-    sealed: false,
-    subtitle: "The Inescapable Undertow",
-    summary: "A true master of the Tidal Tradition does not waste energy generating flashy geysers. Their magic is heavy, silent, and terrifyingly absolute. They manipulate hydrostatic pressure, momentum, and the fluid dynamics within their enemies' very veins. A duel with a Tidal master feels like fighting underwater—every movement you make is sluggish, resisted by an unseen, crushing weight, while they move with the terrifying, frictionless grace of an apex predator.",
-    bloodlineTitle: "The Bloodlines of the Deep",
-    bloodlines: [
-      {
-        faction: "The Wave-Breakers of Maers",
-        epithet: "The Crushing Current",
-        description: "Maers is a wealthy, bustling coastal hub built on maritime laws and hidden vaults, constantly battling sea serpents rising from their harbor. Their Initiates treat the Tidal Tradition as a physical weapon. They do not wash enemies away; they shatter them.",
-        showcaseTitle: "The Ascent of Fryv",
-        showcaseDesc: "Fryv of Maers perfectly embodies this kinetic philosophy. As a swift skirmisher, Fryv uses the physical weight of water to augment his momentum. When a Maers combatant strikes, they wrap their weapons in high-pressure hydro-sheaths. A parried blow from Fryv doesn’t just deflect; it hits with the concentrated kinetic energy of a crashing wave, shattering the opponent’s wrists and buckling their armor through sheer hydrostatic shock."
-      },
-      {
-        faction: "The Navigators of Riels",
-        epithet: "The Fathomless Pull",
-        description: "If Maers represents the violent crash of the wave upon the shore, Riels represents the silent, inescapable undertow. Riels is a city of deadly storms and desperate sailors, and their magic is about manipulation, navigation, and suffocation.",
-        showcaseTitle: "The Command of Meda",
-        showcaseDesc: "Meda of Riels does not fight the storm; she dictates it. Riels masters weave currents of heavy, humid air and localized vacuums. They alter the battlefield's atmosphere, drawing enemies off-balance and literally pulling the breath from their lungs. To fight Meda is to experience deep-sea panic on dry land, suffocating in an unseen ocean while she calmly steps in for the execution."
-      }
-    ],
-    threat: {
-      title: "The Apex Threat: The Abyssal Leviathan",
-      summary: "While Hookonan and Shraseer are horrors of the deep, the true, apocalyptic threat of the oceans is a walking, localized tsunami representing the sea's ancient hunger to reclaim dry land. This sets up an eternal elemental war to extinguish the Pyric fires of the world.",
-      bossName: "Octencolt",
-      bossImage: "/images/sprites/Octencolt.png",
-      bossDesc: "When Octencolt surfaces, the sky turns black, and the atmospheric pressure drops so drastically that men's eardrums rupture before the first wave even hits. Its hordes throw themselves violently at Aaran to permanently drown its foundries. To slay Octencolt and claim its Stage 7 Heart, a Warband must dive into the absolute, crushing blackness of its domain and prove their will is deeper than the ocean abyss."
-    },
-    relics: [
-      {
-        name: "Tidenwelv",
-        type: "Froststeel Relic Blade",
-        description: "This froststeel blade does not cut to make an enemy bleed; it cuts to drain their momentum. A single wound from Tidenwelv floods the victim's nervous system with the sensation of freezing, deep-ocean pressure, turning a charging knight into a sluggish, drowning victim fighting a current only they can feel."
-      },
-      {
-        name: "The Abyssal Lure",
-        type: "Drowned-Brass Lantern",
-        description: "A handheld lantern emitting an eerie, bioluminescent blue light that bends the perception of depth and space. Enemies caught in its glow misjudge distances, swinging wildly at phantoms that seem an arm's length away, while the wielder safely dissects them from afar."
-      },
-      {
-        name: "The Drowned Crown",
-        type: "Jagged Coral Helm",
-        description: "Wrought from blackened, jagged coral, this helm grants the wielder the terrifying silence of the Mariana Trench. When activated, all ambient sound within thirty paces ceases. The sudden, absolute sensory deprivation induces severe vertigo and panic in opponents right before the fatal blow lands."
-      }
-    ]
+  {
+    id: 'aklas',
+    region: 'Aklas',
+    bg: '/images/sprites/Aklas-Background.png',
+    leftHero: { name: 'Vecta of Aklas', src: '/images/sprites/Vecta of Aklas (3).png', glow: 'drop-shadow(0 0 35px rgba(239, 68, 68, 0.6))' },
+    rightHero: { name: 'Fiena of Aklas', src: '/images/sprites/Fiena of Aklas (3).png', glow: 'drop-shadow(0 0 35px rgba(20, 184, 166, 0.6))' }
   },
-  "Terran Tradition": {
-    sealed: false,
-    subtitle: "The Weight of the World",
-    summary: "Masters of the Terran Tradition do not 'cast' spells. Instead, they command the very foundation of the realm. They manipulate tectonic stress, gravitational density, and the crystalline structure of the earth itself. A Terran master does not dodge. Why would a mountain dodge a pebble? They simply endure. Their magic is characterized by a heavy, resonant silence—the feeling of being deep underground, where the pressure is absolute and the air is thick with the scent of ozone and ancient mineral.",
-    bloodlineTitle: "The Bloodlines of the Stone",
-    bloodlines: [
-      {
-        faction: "The Vault-Keepers of Maers",
-        epithet: "The Iron-Rooted",
-        description: "Maers, known for its harbor, also hides the deep Terran vaults beneath its streets. The Maers Terran practitioners view the earth as a series of interlocking locks and seals.",
-        showcaseTitle: "The Endurance of Galts",
-        showcaseDesc: "Galts of Maers embodies the transition from a nimble skirmisher to a living fortress. A high Terran master, Galts does not just hold his ground; he is the ground. When he adopts a defensive stance, the earth around his feet calcifies, and his own skin takes on the hardness of granite. He is the master of the 'Stone Vault,' a tactical state where his presence creates an area of absolute spatial denial that no enemy can breach without shattering their own weapons."
-      },
-      {
-        faction: "The Wardens of Toran",
-        epithet: "The Living Granite",
-        description: "Toran is a city of stubborn stone-wardens, where the Terran Tradition is synonymous with duty and the defense of ancient oaths.",
-        showcaseTitle: "The Resilience of Pilos",
-        showcaseDesc: "Pilos of Toran practices a more spiritual, meditative form of the Terran path. He speaks to the earth, feeling the vibrations of footsteps miles away. Pilos represents the 'Stone Council' philosophy—a style of combat that is entirely reactive. He waits for the opponent to exhaust themselves against his defenses, only striking when the enemy’s own momentum has betrayed them."
-      }
-    ],
-    threat: {
-      title: "The Apex Threat: The Tectonic Colossus",
-      summary: "The Terran Dominators—Bicomatan, Arsnat, and Poxelgrave—are not beasts that run or hunt. They are moving mountains. They cause earthquakes simply by existing. When a Terran Dominator is active, the entire terrain of the battlefield changes. Paths close, new walls of obsidian rise from the ground, and the very gravity of the area feels heavier.",
-      bossName: "Poxelgrave",
-      bossImage: "/images/sprites/Poxelgrave.png",
-      bossDesc: "To slay a Terran Dominator is to participate in an epic struggle against the land itself. A Warband must essentially 'quarry' these behemoths, chipping away at their impenetrable defenses until their inner, tectonic Heart—which glows with the heat of the planet's core—is exposed."
-    },
-    relics: [
-      {
-        name: "The Aegis of Toran",
-        type: "Tower Shield",
-        description: "A tower shield carved from a single, seamless block of living basalt. It does not just stop blows; it absorbs the energy, feeding it back into the ground and causing the surrounding earth to tremor, knocking back anyone standing nearby."
-      },
-      {
-        name: "Shard of the Earth-Heart",
-        type: "Pulsating Gemstone",
-        description: "A jagged, pulsating gemstone that, when touched, anchors the wielder to the immediate environment. It makes the user physically impossible to lift or push, turning them into an immovable object, even against the crushing waves of a Tidal master."
-      },
-      {
-        name: "The Seismic Maul",
-        type: "Two-Handed Weapon",
-        description: "A heavy, two-handed weapon made of blackened volcanic glass. Every time it strikes the ground, it sends a localized shockwave through the feet of every nearby enemy, disrupting their balance and shattering their focus."
-      }
-    ]
-  },
-  "Voltanic Tradition": { sealed: true },
-  "Aerial Tradition": { sealed: true },
-  "Glacial Tradition": { sealed: true },
-  "Ferric Tradition": { sealed: true },
-  "Verdant Tradition": { sealed: true },
-  "Arcanic Tradition": { sealed: true },
-  "Luminous Tradition": { sealed: true },
-  "Umbral Tradition": { sealed: true },
-  "Ethereal Tradition": { sealed: true },
-  "Astral Tradition": { sealed: true },
-  "Demonic Tradition": { sealed: true },
-  "Runic Tradition": { sealed: true },
-  "Psionic Tradition": { sealed: true },
-  "Cosmic Tradition": { sealed: true },
-  "Ancestral Tradition": { sealed: true },
-  "Draconic Tradition": { sealed: true },
-  "Martial Tradition": { sealed: true },
-  "Venomous Tradition": { sealed: true },
-  "Radiant Core Tradition": { sealed: true },
-  "Rehma Tradition": { sealed: true }
-};
+  {
+    id: 'aaran',
+    region: 'Aaran',
+    bg: '/images/sprites/Aaran-Background.png',
+    leftHero: { name: 'Seib of Aaran', src: '/images/sprites/Seib of Aaran (3).png', glow: 'drop-shadow(0 0 35px rgba(34, 197, 94, 0.6))' },
+    rightHero: { name: 'Trok of Aaran', src: '/images/sprites/Trok of Aaran (3).png', glow: 'drop-shadow(0 0 35px rgba(249, 115, 22, 0.6))' }
+  }
+];
+
+export default function Page() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedTradition, setSelectedTradition] = useState(null);
+  const active = SEQUENCES[activeIndex];
+
+  useEffect(() => {
+    const timer = setInterval(() => { setActiveIndex((prev) => (prev + 1) % SEQUENCES.length); }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = selectedTradition ? 'hidden' : 'unset';
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [selectedTradition]);
+
+  const traditionsList = Object.keys(TRADITIONS_DATA);
+  const currentLore = selectedTradition ? TRADITIONS_DATA[selectedTradition] : null;
+
+  return (
+    <div className="min-h-screen bg-black text-white overflow-hidden font-sans select-none relative">
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes smoke-rise-thin { 0% { transform: translate(-50%, 20px) scaleX(0.5) scaleY(0.5) rotate(0deg); opacity: 0; filter: blur(8px); } 15% { opacity: 0.65; filter: blur(10px); } 50% { transform: translate(-35%, -15px) scaleX(1.1) scaleY(1.3) rotate(80deg); opacity: 0.45; filter: blur(16px); } 100% { transform: translate(-15%, -45px) scaleX(1.6) scaleY(1.8) rotate(190deg); opacity: 0; filter: blur(28px); } }
+        @keyframes smoke-drift-shear { 0% { transform: translate(-45%, 10px) scaleX(0.7) scaleY(0.7) rotate(180deg); opacity: 0; filter: blur(12px); } 25% { opacity: 0.55; filter: blur(14px); } 70% { transform: translate(-60%, -25px) scaleX(1.4) scaleY(1.5) rotate(270deg); opacity: 0.3; filter: blur(22px); } 100% { transform: translate(-75%, -55px) scaleX(2.1) scaleY(1.9) rotate(360deg); opacity: 0; filter: blur(36px); } }
+        @keyframes smoke-plume-base { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.2; } 50% { transform: scale(1.15) rotate(180deg); opacity: 0.45; } }
+        .vfx-smoke-plume { animation: smoke-rise-thin 6s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .vfx-smoke-shear { animation: smoke-drift-shear 8s infinite cubic-bezier(0.39, 0.575, 0.565, 1); }
+        .vfx-smoke-base { animation: smoke-plume-base 10s infinite linear; }
+      `}} />
+
+      {/* HEADER */}
+      <header className="sticky top-0 z-40 backdrop-blur-xl border-b border-white/10 bg-black/60 py-6">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-4 text-center">
+          <div className="flex flex-col items-center gap-3">
+            <div className="relative h-24 w-24 rounded-2xl overflow-hidden border border-yellow-400/10">
+              <Image src="/images/sprites/TotA Symbol 1.png" alt="Logo" fill sizes="96px" priority className="object-contain" />
+            </div>
+            <div>
+              <div className="font-black tracking-widest text-base md:text-lg">THRONE OF THE ASCENDANT</div>
+              <div className="text-[10px] text-zinc-500 uppercase tracking-[0.3em] mt-0.5">By Nitti Games</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* HERO SECTION */}
+      <section className="relative h-[550px] w-full overflow-hidden bg-black">
+        <AnimatePresence mode="popLayout">
+          <motion.div key={active.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className="absolute inset-0 w-full h-full">
+            <div className="absolute inset-0 w-full h-full z-0">
+              <Image src={active.bg} alt={active.region} fill priority unoptimized className="object-cover object-center" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 z-10" />
+            </div>
+            <div className="absolute inset-0 w-full h-full z-20 pointer-events-none">
+              <motion.div animate={{ x: [-8, 8, -8] }} transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-0 left-[-4%] w-[54%] h-full">
+                <Image src={active.leftHero.src} alt={active.leftHero.name} fill sizes="50vw" priority style={{ objectFit: 'contain', objectPosition: 'bottom', filter: active.leftHero.glow }} />
+              </motion.div>
+              <motion.div animate={{ x: [8, -8, 8] }} transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-0 right-[-4%] w-[54%] h-full">
+                <Image src={active.rightHero.src} alt={active.rightHero.name} fill sizes="50vw" priority style={{ objectFit: 'contain', objectPosition: 'bottom', filter: active.rightHero.glow }} />
+              </motion.div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="absolute inset-x-0 bottom-6 z-30 flex items-center justify-between px-8">
+          <button onClick={() => setActiveIndex((prev) => (prev - 1 + SEQUENCES.length) % SEQUENCES.length)} className="px-4 py-2 rounded-xl bg-black/60 border border-white/10 backdrop-blur text-xs font-bold hover:bg-white hover:text-black transition uppercase">← Prev</button>
+          <div className="flex gap-2">
+            {SEQUENCES.map((seq, idx) => (
+              <button key={seq.id} onClick={() => setActiveIndex(idx)} className={`h-1.5 rounded-full transition-all duration-300 ${idx === activeIndex ? 'w-6 bg-yellow-500' : 'w-1.5 bg-white/20'}`} />
+            ))}
+          </div>
+          <button onClick={() => setActiveIndex((prev) => (prev + 1) % SEQUENCES.length)} className="px-4 py-2 rounded-xl bg-black/60 border border-white/10 backdrop-blur text-xs font-bold hover:bg-white hover:text-black transition uppercase">Next →</button>
+        </div>
+      </section>
+
+      {/* TRADITIONS GRID */}
+      <section id="traditions" className="bg-zinc-950 border-y border-white/5 py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="border-b border-white/10 pb-6 mb-12">
+            <span className="text-xs font-bold tracking-[0.25em] text-zinc-500 uppercase block mb-1">Strategic Masteries</span>
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Combat Traditions</h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            {traditionsList.map((name) => (
+              <div key={name} onClick={() => setSelectedTradition(name)} className="group relative flex flex-col items-center bg-zinc-900/20 border border-white/5 hover:border-zinc-500/30 rounded-xl p-5 text-center transition-all duration-500 overflow-hidden cursor-pointer hover:bg-zinc-900/50">
+                <div className="absolute inset-0 pointer-events-none opacity-20 group-hover:opacity-60 transition-opacity duration-700">
+                  <div className="absolute bottom-4 left-1/2 w-10 h-36 mix-blend-screen vfx-smoke-plume" style={{ background: 'linear-gradient(to top, rgba(255,255,255,0.15) 0%, transparent 100%)' }} />
+                </div>
+                <div className="relative h-14 w-14 mb-3 z-10 transition-transform duration-500 transform group-hover:scale-105">
+                  <Image src={`/images/sprites/${name.replace(/\s+/g, '-')}.png`} alt={name} fill unoptimized sizes="56px" className="object-contain" />
+                </div>
+                <h3 className="text-xs font-bold tracking-wide text-zinc-400 group-hover:text-zinc-200 transition-colors duration-500 uppercase line-clamp-2 z-10">{name}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CODEX PREMIUM POPUP OVERLAY */}
+      <AnimatePresence>
+        {selectedTradition && currentLore && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-lg p-4 md:p-8 overflow-y-auto" onClick={() => setSelectedTradition(null)}>
+            <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }} transition={{ type: 'spring', damping: 25 }} className="relative w-full max-w-5xl bg-[#09090b] border border-zinc-800/80 rounded-2xl p-6 md:p-12 my-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+              
+              {/* Close Button */}
+              <button onClick={() => setSelectedTradition(null)} className="absolute top-6 right-6 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-400 hover:text-white rounded-full p-2.5 transition-all">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+              </button>
+
+              {currentLore.sealed ? (
+                /* SEALED TEXT LAYOUT */
+                <div className="flex flex-col items-center justify-center py-16 text-center">
+                  <div className="relative h-20 w-20 mb-6 opacity-20 grayscale filter blur-[0.5px]">
+                    <Image src={`/images/sprites/${selectedTradition.replace(/\s+/g, '-')}.png`} alt={selectedTradition} fill sizes="80px" className="object-contain" />
+                  </div>
+                  <h3 className="text-lg font-bold text-zinc-400 uppercase tracking-widest mb-2">Archives Sealed</h3>
+                  <p className="text-zinc-600 max-w-sm text-xs md:text-sm leading-relaxed">
+                    The sacred masteries of the <span className="text-zinc-400 font-semibold">{selectedTradition}</span> have not yet been unearthed. Check back soon.
+                  </p>
+                </div>
+              ) : (
+                /* ACTIVE DYNAMIC CODEX LAYOUT */
+                <div className="space-y-12">
+                  
+                  {/* HEADER AREA */}
+                  <div className="flex flex-col items-center text-center border-b border-zinc-800 pb-8">
+                    <div className="relative h-24 w-24 mb-4">
+                      <Image src={`/images/sprites/${selectedTradition.replace(/\s+/g, '-')}.png`} alt={selectedTradition} fill sizes="96px" className="object-contain" />
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-black uppercase tracking-wider text-zinc-100">{selectedTradition}</h2>
+                    <div className="text-xs font-black tracking-[0.3em] text-zinc-400 uppercase mt-1.5 flex items-center gap-2">
+                      <span className="h-1 w-6 bg-zinc-600 rounded" />
+                      {currentLore.subtitle}
+                      <span className="h-1 w-6 bg-zinc-600 rounded" />
+                    </div>
+                    <p className="text-sm text-zinc-400 font-light leading-relaxed max-w-3xl mt-6 italic">
+                      "{currentLore.summary}"
+                    </p>
+                  </div>
+
+                  {/* BLOODLINES SECTION */}
+                  {currentLore.bloodlines && (
+                    <div className="space-y-6">
+                      <div className="flex items-center gap-3">
+                        <h3 className="text-xs font-black tracking-[0.2em] text-zinc-500 uppercase">
+                          {currentLore.bloodlineTitle || "Core Bloodlines"}
+                        </h3>
+                        <div className="h-[1px] flex-1 bg-zinc-800/60" />
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {currentLore.bloodlines.map((bl, idx) => (
+                          <div key={idx} className="flex flex-col justify-between bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-6 hover:bg-zinc-900/50 transition-colors">
+                            <div>
+                              <div className="flex items-baseline justify-between gap-2 mb-2">
+                                <h4 className="text-sm font-black tracking-wide text-zinc-200 uppercase">{bl.faction}</h4>
+                                <span className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">{bl.epithet}</span>
+                              </div>
+                              <p className="text-xs text-zinc-400 leading-relaxed font-light mb-6">{bl.description}</p>
+                            </div>
+                            <div className="bg-black/40 border border-zinc-800/40 rounded-lg p-4 relative overflow-hidden">
+                              <span className="text-[10px] font-bold tracking-wider text-yellow-500/80 uppercase block mb-1">{bl.showcaseTitle}</span>
+                              <p className="text-[11px] text-zinc-400 leading-relaxed font-light">{bl.showcaseDesc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* APEX THREAT SECTION */}
+                  {currentLore.threat && (
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <h3 className="text-xs font-black tracking-[0.2em] text-zinc-500 uppercase">Threat Analysis</h3>
+                        <div className="h-[1px] flex-1 bg-zinc-800/60" />
+                      </div>
+                      <div className="bg-gradient-to-br from-zinc-950 to-[#0e0e11] border border-zinc-800 rounded-xl p-6 md:p-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                          <div className="md:col-span-2 max-w-3xl">
+                            <h4 className="text-base font-black text-zinc-200 uppercase tracking-wide mb-1">{currentLore.threat.title}</h4>
+                            <p className="text-xs text-zinc-400 font-light mb-6 leading-relaxed">{currentLore.threat.summary}</p>
+                            
+                            <div className="border-l-2 border-zinc-700 pl-4 space-y-1">
+                              <span className="text-xs font-bold text-zinc-300 uppercase tracking-widest block">{currentLore.threat.bossName}</span>
+                              <p className="text-xs text-zinc-400 font-light leading-relaxed">{currentLore.threat.bossDesc}</p>
+                            </div>
+                          </div>
+                          
+                          {/* DYNAMIC DOMINATOR PORTRAIT SLOT */}
+                          {currentLore.threat.bossImage && (
+                            <div className="relative h-56 w-full rounded-lg border border-zinc-800 bg-black/40 p-2 overflow-hidden flex items-center justify-center">
+                              <Image 
+                                src={currentLore.threat.bossImage} 
+                                alt={currentLore.threat.bossName} 
+                                fill 
+                                sizes="(max-w-7xl) 33vw, 250px"
+                                className="object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.03)] transition-transform duration-500 hover:scale-105" 
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* RELICS SECTION */}
+                  {currentLore.relics && (
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <h3 className="text-xs font-black tracking-[0.2em] text-zinc-500 uppercase">Relics of the Forge</h3>
+                        <div className="h-[1px] flex-1 bg-zinc-800/60" />
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {currentLore.relics.map((relic, idx) => (
+                          <div key={idx} className="p-5 rounded-xl bg-zinc-900/20 border border-zinc-800/60 flex flex-col justify-center">
+                            <div className="flex items-baseline justify-between gap-2 mb-1.5">
+                              <span className="text-xs font-bold text-zinc-300 uppercase tracking-wide">{relic.name}</span>
+                              <span className="text-[9px] font-bold tracking-widest text-zinc-500 uppercase">{relic.type}</span>
+                            </div>
+                            <p className="text-xs text-zinc-400 font-light leading-relaxed">{relic.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
