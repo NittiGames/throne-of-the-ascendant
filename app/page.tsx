@@ -163,9 +163,9 @@ export default function Page() {
                       {currentLore.subtitle}
                       <span className="h-1 w-6 bg-zinc-600 rounded" />
                     </div>
-                    <p className="text-sm text-zinc-400 font-light leading-relaxed max-w-3xl mt-6 italic">
-                      "{currentLore.summary}"
-                    </p>
+                    <div className="text-sm text-zinc-400 font-light leading-relaxed max-w-3xl mt-6 italic text-center whitespace-pre-line">
+  &ldquo;{currentLore.summary}&rdquo;
+</div>
                   </div>
 
                   {/* BLOODLINES SECTION */}
