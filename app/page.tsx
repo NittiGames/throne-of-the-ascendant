@@ -10,22 +10,22 @@ const SEQUENCES = [
     id: 'pars',
     region: 'Pars',
     bg: '/images/sprites/Pars-Background.png',
-    leftHero: { name: 'Sofen of Pars', src: '/images/sprites/Sofen of Pars (2).png', glow: 'drop-shadow(0 0 35px rgba(234, 179, 8, 0.6))' },
-    rightHero: { name: 'Hais of Pars', src: '/images/sprites/Hais of Pars (3).png', glow: 'drop-shadow(0 0 35px rgba(147, 51, 234, 0.6))' }
+    leftHero: { name: 'Sofen of Pars', src: '/images/sprites/Sofen of Pars (2).png', glow: 'drop-shadow(0 0 35px rgba(18, 143, 28, 0.6))' },
+    rightHero: { name: 'Hais of Pars', src: '/images/sprites/Hais of Pars (3).png', glow: 'drop-shadow(0 0 35px rgba(55, 182, 241, 0.6))' }
   },
   {
     id: 'aklas',
     region: 'Aklas',
     bg: '/images/sprites/Aklas-Background.png',
-    leftHero: { name: 'Vecta of Aklas', src: '/images/sprites/Vecta of Aklas (3).png', glow: 'drop-shadow(0 0 35px rgba(239, 68, 68, 0.6))' },
+    leftHero: { name: 'Vecta of Aklas', src: '/images/sprites/Vecta of Aklas (3).png', glow: 'drop-shadow(0 0 35px rgba(122, 231, 245, 0.6))' },
     rightHero: { name: 'Fiena of Aklas', src: '/images/sprites/Fiena of Aklas (3).png', glow: 'drop-shadow(0 0 35px rgba(20, 184, 166, 0.6))' }
   },
   {
     id: 'aaran',
     region: 'Aaran',
     bg: '/images/sprites/Aaran-Background.png',
-    leftHero: { name: 'Seib of Aaran', src: '/images/sprites/Seib of Aaran (3).png', glow: 'drop-shadow(0 0 35px rgba(34, 197, 94, 0.6))' },
-    rightHero: { name: 'Trok of Aaran', src: '/images/sprites/Trok of Aaran (3).png', glow: 'drop-shadow(0 0 35px rgba(249, 115, 22, 0.6))' }
+    leftHero: { name: 'Seib of Aaran', src: '/images/sprites/Seib of Aaran (3).png', glow: 'drop-shadow(0 0 35px rgba(207, 117, 235, 0.6))' },
+    rightHero: { name: 'Trok of Aaran', src: '/images/sprites/Trok of Aaran (3).png', glow: 'drop-shadow(0 0 35px rgba(248, 96, 69, 0.6))' }
   }
 ];
 
