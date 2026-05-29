@@ -45,7 +45,7 @@ export default function Page() {
   }, [selectedTradition]);
 
   const traditionsList = Object.keys(TRADITIONS_DATA);
-  const currentLore = selectedTradition
+  const currentLore: any = selectedTradition
   ? TRADITIONS_DATA[selectedTradition as keyof typeof TRADITIONS_DATA]
   : null;
 
