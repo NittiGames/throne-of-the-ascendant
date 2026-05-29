@@ -45,7 +45,9 @@ export default function Page() {
   }, [selectedTradition]);
 
   const traditionsList = Object.keys(TRADITIONS_DATA);
-  const currentLore = selectedTradition ? TRADITIONS_DATA[selectedTradition] : null;
+  const currentLore = selectedTradition
+  ? TRADITIONS_DATA[selectedTradition as keyof typeof TRADITIONS_DATA]
+  : null;
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden font-sans select-none relative">
