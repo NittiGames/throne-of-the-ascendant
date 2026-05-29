@@ -437,7 +437,7 @@ export default function Page() {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                        {currentLore.bloodlines.map((bl, idx) => (
+                        {currentLore.bloodlines.map((bl: any, idx: number) => (
                           <div
                             key={idx}
                             className="bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-6"
@@ -538,7 +538,7 @@ export default function Page() {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                        {currentLore.relics.map((relic, idx) => (
+                        {currentLore.relics.map((relic: any, idx: number) => (
                           <div
                             key={idx}
                             className="p-5 rounded-xl bg-zinc-900/20 border border-zinc-800/60"
