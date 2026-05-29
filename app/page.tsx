@@ -474,7 +474,7 @@ export default function Page() {
                   )}
 
                   {/* THREAT */}
-                  {currentLore.threat && (
+                  {'threat' in currentLore && currentLore.threat && (
 
                     <div className="space-y-4">
 
@@ -489,16 +489,16 @@ export default function Page() {
                           <div className="md:col-span-2">
 
                             <h4 className="text-base font-black text-zinc-200 uppercase tracking-wide mb-1">
-                              {currentLore.threat.title}
+                              {currentLore.threat?.title}
                             </h4>
 
                             <p className="text-xs text-zinc-400 font-light mb-6 leading-relaxed">
-                              {currentLore.threat.summary}
+                              {currentLore.threat?.summary}
                             </p>
 
                             <div className="border-l-2 border-zinc-700 pl-4">
                               <span className="text-xs font-bold text-zinc-300 uppercase tracking-widest block">
-                                {currentLore.threat.bossName}
+                                {currentLore.threat?.bossName}
                               </span>
 
                               <p className="text-xs text-zinc-400 font-light leading-relaxed">
@@ -508,7 +508,7 @@ export default function Page() {
 
                           </div>
 
-                          {currentLore.threat.bossImage && (
+                          {currentLore.threat?.bossImage && (
                             <div className="relative h-56 w-full rounded-lg border border-zinc-800 bg-black/40 p-2 overflow-hidden flex items-center justify-center">
 
                               <Image
