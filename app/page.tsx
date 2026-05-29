@@ -180,7 +180,7 @@ export default function Page() {
                         <div className="h-[1px] flex-1 bg-zinc-800/60" />
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {currentLore.bloodlines.map((bl, idx) => (
+                        {currentLore.bloodlines.map((bl: any, idx: number) => (
                           <div key={idx} className="flex flex-col justify-between bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-6 hover:bg-zinc-900/50 transition-colors">
                             <div>
                               <div className="flex items-baseline justify-between gap-2 mb-2">
@@ -243,7 +243,7 @@ export default function Page() {
                         <div className="h-[1px] flex-1 bg-zinc-800/60" />
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {currentLore.relics.map((relic, idx) => (
+                        {currentLore.relics.map((relic: any, idx: number) => (
                           <div key={idx} className="p-5 rounded-xl bg-zinc-900/20 border border-zinc-800/60 flex flex-col justify-center">
                             <div className="flex items-baseline justify-between gap-2 mb-1.5">
                               <span className="text-xs font-bold text-zinc-300 uppercase tracking-wide">{relic.name}</span>
