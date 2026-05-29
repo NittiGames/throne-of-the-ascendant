@@ -200,7 +200,7 @@ export default function Page() {
                   )}
 
                   {/* APEX THREAT SECTION */}
-                  {currentLore.threat && (
+                  {currentLore?.threat && (
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         <h3 className="text-xs font-black tracking-[0.2em] text-zinc-500 uppercase">Threat Analysis</h3>
@@ -209,21 +209,21 @@ export default function Page() {
                       <div className="bg-gradient-to-br from-zinc-950 to-[#0e0e11] border border-zinc-800 rounded-xl p-6 md:p-8">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
                           <div className="md:col-span-2 max-w-3xl">
-                            <h4 className="text-base font-black text-zinc-200 uppercase tracking-wide mb-1">{currentLore.threat.title}</h4>
-                            <p className="text-xs text-zinc-400 font-light mb-6 leading-relaxed">{currentLore.threat.summary}</p>
+                            <h4 className="text-base font-black text-zinc-200 uppercase tracking-wide mb-1">{currentLore?.threat?.title}</h4>
+                            <p className="text-xs text-zinc-400 font-light mb-6 leading-relaxed">{currentLore?.threat?.summary}</p>
                             
                             <div className="border-l-2 border-zinc-700 pl-4 space-y-1">
-                              <span className="text-xs font-bold text-zinc-300 uppercase tracking-widest block">{currentLore.threat.bossName}</span>
+                              <span className="text-xs font-bold text-zinc-300 uppercase tracking-widest block">{currentLore?.threat?.bossName}</span>
                               <p className="text-xs text-zinc-400 font-light leading-relaxed">{currentLore.threat.bossDesc}</p>
                             </div>
                           </div>
                           
                           {/* DYNAMIC DOMINATOR PORTRAIT SLOT */}
-                          {currentLore.threat.bossImage && (
+                          {currentLore?.threat?.bossImage && (
                             <div className="relative h-56 w-full rounded-lg border border-zinc-800 bg-black/40 p-2 overflow-hidden flex items-center justify-center">
                               <Image 
                                 src={currentLore.threat.bossImage} 
-                                alt={currentLore.threat.bossName} 
+                                alt={currentLore?.threat?.bossName} 
                                 fill 
                                 sizes="(max-w-7xl) 33vw, 250px"
                                 className="object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.03)] transition-transform duration-500 hover:scale-105" 
