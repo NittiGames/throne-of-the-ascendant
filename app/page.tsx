@@ -31,8 +31,7 @@ const SEQUENCES = [
 
 export default function Page() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedTradition, setSelectedTradition] = useState(null);
-  const active = SEQUENCES[activeIndex];
+const [selectedTradition, setSelectedTradition] = useState<string | null>(null);  const active = SEQUENCES[activeIndex];
 
   useEffect(() => {
     const timer = setInterval(() => { setActiveIndex((prev) => (prev + 1) % SEQUENCES.length); }, 4000);
