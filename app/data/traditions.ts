@@ -1,4 +1,4 @@
-// app/data/traditions.js
+// app/data/traditions.ts
 export const TRADITIONS_DATA = {
   "Pyric Tradition": {
     sealed: false,
