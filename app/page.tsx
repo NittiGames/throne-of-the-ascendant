@@ -79,7 +79,7 @@ export default function Page() {
 
   const traditionsList = Object.keys(TRADITIONS_DATA);
 
-  const currentLore = any =
+  const currentLore : any =
     selectedTradition
       ? TRADITIONS_DATA[selectedTradition as TraditionKey]
       : null;
