@@ -163,17 +163,17 @@ export const TRADITIONS_DATA = {
     },
     relics: [
       {
-        name: "The Lightning-Wick",
-        type: "Needle-Thin Rapier",
-        description: "A needle-thin rapier forged from a unique copper-iron alloy, completely devoid of a crossguard. It carries no weight and makes no sound when swung. A single prick from its tip instantly disrupts the victim's internal bio-electricity, leaving their muscles entirely unresponsive and locking them in a state of rigid, helpless paralysis while the wielder repositions."
+        name: "The Lightning Wick",
+        type: "Needle Thin Rapier",
+        description: "A needle thin rapier forged from a unique copper-iron alloy, completely devoid of a crossguard. It carries no weight and makes no sound when swung. A single prick from its tip instantly disrupts the victim's internal bio-electricity, leaving their muscles entirely unresponsive and locking them in a state of rigid, helpless paralysis while the wielder repositions."
       },
       {
         name: "The Capacitor Mantle",
-        type: "Kinetic-Absorbing Cloak",
+        type: "Kinetic Absorbing Cloak",
         description: "A sleek, dark cloak woven with threads of spun gold and treated with alchemical salts. Rather than deflecting incoming physical impacts, the mantle absorbs the kinetic energy of the blow, storing it as latent static potential. When fully charged, it violently releases this stored energy in a silent, blinding radial discharge that stuns and blinds anyone in proximity."
       },
       {
-        name: "The Sitran Tuning-Fork",
+        name: "The Sitran Tuning Fork",
         type: "Two-Handed Polearm",
         description: "A heavy, two-handed polearm tipped with a dual-pronged iron head. When struck against a shield or the ground, it emits a low, continuous frequency that destabilizes the crystalline structure of nearby stone and iron, causing enemy defenses to fracture from their own internal vibrations."
       }
@@ -186,14 +186,14 @@ export const TRADITIONS_DATA = {
     bloodlineTitle: "The Bloodlines of the Sky",
     bloodlines: [
       {
-        faction: "The High-Watchers of Aklas",
+        faction: "The High Watchers of Aklas",
         epithet: "The Stratosphere's Edge",
         description: "The floating towers of Aklas sit where the air is impossibly thin, teaching their Initiates to thrive in an environment that starves lesser warriors of oxygen. They view the Aerial Tradition as an art of surveillance, precision, and inevitable descent.",
         showcaseTitle: "The Glide of Fiena",
         showcaseDesc: "Fiena of Aklas does not stand toe-to-toe with her enemies. She treats the sky as her personal armory. Tethering her movements to the high-altitude jet streams, she dances above the battlefield, observing the flow of combat. When she strikes, she drops from the clouds at terrifying, terminal velocities, using the immense kinetic energy of her fall to drive her blade through the heaviest armor, only to catch an updraft and vanish back into the mist before her victim’s body hits the floor."
       },
       {
-        faction: "The Gale-Callers of Efers",
+        faction: "The Gale Callers of Efers",
         epithet: "The Vacuum Weavers",
         description: "Efers is a nomadic culture of sky-sailors and avian-tamers. Where Aklas uses the sky for precision, Efers uses the atmosphere for absolute, sweeping control, viewing the air as a weapon of blunt, invisible trauma.",
         showcaseTitle: "The Descent of Saen",
@@ -209,17 +209,17 @@ export const TRADITIONS_DATA = {
     },
     relics: [
       {
-        name: "The Zephyr-Edge",
+        name: "The Zephyr Edge",
         type: "Invisible Rapier",
         description: "A blade forged from a pale, glass-like alloy that is so thin it is almost invisible when viewed head-on. It has virtually no weight. When swung, it does not cut the air; it separates it, creating a micro-vacuum wake. A strike from this weapon encounters zero physical resistance and produces absolutely no sound, allowing for silent, surgical dismemberment."
       },
       {
-        name: "Mantle of the Cloud-Walker",
-        type: "Mist-Woven Cloak",
+        name: "Mantle of the Cloud Walker",
+        type: "Mist Woven Cloak",
         description: "A cloak woven from condensed mist and the feathers of apex sky-predators. It negates the wearer's physical weight, unbinding them from the strict laws of gravity. While it does not grant true, sustained flight, it allows the wearer to make impossible, floating leaps and control their descent from any height, rendering them untouchable by standard infantry."
       },
       {
-        name: "The Sky-Caller’s Whistle",
+        name: "The Sky Caller’s Whistle",
         type: "Hollowed Bone Instrument",
         description: "A smooth, hollowed bone instrument devoid of complex carvings. When played, it does not produce a melody, but rather manipulates the barometric pressure in a wide radius. A single, sharp note can instantly extinguish every Pyric flame in the area by starving it of oxygen, or summon a localized downdraft powerful enough to pin a charging cavalry unit to the dirt."
       }
@@ -381,9 +381,9 @@ export const TRADITIONS_DATA = {
       bossDesc: "When Postenfrein appears, the laws of physics become mere suggestions. To slay this Dominator is to fight a paradox. A Warband must navigate fractured realities, identifying the core sequence that holds the entity together and 'deleting' it before the environment unravels."
     },
     relics: [
-      { name: "The-Null-Sphere", type: "Repulsive Arcanic Field", description: "A dense orb of blackened glass that violently pushes away any physical object with concussive force." },
-      { name: "The-Aether-Weave-Mantle", type: "Mana-Saturated Cloak", description: "A cloak that blurs the wearer's silhouette and converts the kinetic energy of blows into harmless violet light." },
-      { name: "The-Rune-Cipher-Lens", type: "Diagnostic Device", description: "A multi-lensed device that reveals the underlying code of the world, identifying hidden traps and structural weaknesses." }
+      { name: "The Null Sphere", type: "Repulsive Arcanic Field", description: "A dense orb of blackened glass that violently pushes away any physical object with concussive force." },
+      { name: "The Aether Weave Mantle", type: "Mana-Saturated Cloak", description: "A cloak that blurs the wearer's silhouette and converts the kinetic energy of blows into harmless violet light." },
+      { name: "The Rune Cipher Lens", type: "Diagnostic Device", description: "A multi-lensed device that reveals the underlying code of the world, identifying hidden traps and structural weaknesses." }
     ]
   },
 
@@ -418,7 +418,7 @@ export const TRADITIONS_DATA = {
     },
     relics: [
       { name: "Nidelan", type: "Radiant-Energy Blade", description: "A minimalist blade that strikes with alignment, vibrating at a frequency that allows it to pass through physical barriers by finding the 'seam' in any material." },
-      { name: "The-Ocular-Band", type: "Pre-Cognitive Circlet", description: "A thin metallic circlet that forces the eye to track the movement of light, allowing the wearer to parry attacks that have not yet begun by reading precursor light signatures." }
+      { name: "The Ocular Band", type: "Pre Cognitive Circlet", description: "A thin metallic circlet that forces the eye to track the movement of light, allowing the wearer to parry attacks that have not yet begun by reading precursor light signatures." }
     ]
   },  
 "Umbral Tradition": {
@@ -429,16 +429,16 @@ export const TRADITIONS_DATA = {
     bloodlines: [
       {
         faction: "The Shadow-Guilds of Tarem",
-        epithet: "The-Obscured",
+        epithet: "The Obscured",
         description: "In the labyrinthine alleys of Tarem, the Umbral Tradition is practiced as the ultimate social and political science, weaving intent into the architecture of the city.",
-        showcaseTitle: "The-Precision-of-Reba",
+        showcaseTitle: "The Precision of-Reba",
         showcaseDesc: "Reba of Tarem creates blind spots in the cognitive processes of her observers. She erases herself from the strategic memory of her enemies, terminating targets without leaving even a shadow behind."
       },
       {
-        faction: "The Night-Walkers of Raten",
-        epithet: "The-Unseen",
+        faction: "The Night Walkers of Raten",
+        epithet: "The Unseen",
         description: "Raten represents the physical application of the void, using the Umbral Tradition to bypass the most stringent defenses, treating barriers as mere suggestions.",
-        showcaseTitle: "The-Infiltration-of-Reela",
+        showcaseTitle: "The Infiltration of Reela",
         showcaseDesc: "Reela of Raten does not open locks; she ceases to exist where the lock is, stepping through barriers as if they were air. To track her is to follow a ripple in still water—she is gone before the disturbance is identified."
       }
     ],
@@ -450,8 +450,8 @@ export const TRADITIONS_DATA = {
       bossDesc: "Ustrem is the most powerful Dominator. He does not destroy the body; he destroys the mind, warping the perception of the battlefield to make allies appear as enemies. Defeating him requires a bond of trust solid enough to withstand the dissolution of sanity itself."
     },
     relics: [
-      { name: "Kiefens", type: "Shadowed-Gauntlets", description: "Instruments of technique that dampen movement vibrations to render the wearer physically silent and allow for strikes that occur without the displacement of air." },
-      { name: "The-Void-Shroud", type: "Ghost-Cloak", description: "Woven from the conceptual threads of the void, this relic allows the wearer to step into the margins of the battlefield, maneuvering as a ghost without being noticed, provided absolute silence is maintained." }
+      { name: "Kiefens", type: "Shadowed Gauntlets", description: "Instruments of technique that dampen movement vibrations to render the wearer physically silent and allow for strikes that occur without the displacement of air." },
+      { name: "The Void Shroud", type: "Ghost Cloak", description: "Woven from the conceptual threads of the void, this relic allows the wearer to step into the margins of the battlefield, maneuvering as a ghost without being noticed, provided absolute silence is maintained." }
     ]
   },
 "Ethereal Tradition": {
@@ -462,16 +462,16 @@ export const TRADITIONS_DATA = {
     bloodlines: [
       {
         faction: "The Monks of Coena",
-        epithet: "The-Spectral-Wardens",
+        epithet: "The Spectral Wardens",
         description: "In the mist-draped monasteries of Coena, the Ethereal Tradition is a sacred duty where initiates learn to project their will into the unseen world to command the restless dead.",
-        showcaseTitle: "The-Ascent-of-Teala",
+        showcaseTitle: "The Ascent of Teala",
         showcaseDesc: "Teala of Coena adopts the presence of a spectral warlock. She does not strike with physical force, but weaves heavy hexes of pure spirit, reaching through armor to rot the resolve and grasp the soul itself."
       },
       {
         faction: "The Traders of Rehma",
-        epithet: "The-Rift-Walkers",
+        epithet: "The Rift Walkers",
         description: "Rehma utilizes the Ethereal Tradition for unmatched infiltration, weaponized by mercenaries and assassins who walk between the cracks of the world.",
-        showcaseTitle: "The-Crucible-of-Ozken",
+        showcaseTitle: "The Crucible of Ozken",
         showcaseDesc: "Ozken of Rehma is a phantom swordsman who fights in a state of flux. He shifts in and out of reality, striking with a spectral blade that bypasses physical defenses to sever life from the body instantly."
       }
     ],
@@ -483,7 +483,7 @@ export const TRADITIONS_DATA = {
       bossDesc: "Asmegatar is a towering entity of negative space that represents the collapse of reality. It unravels the sanity and spirits of its enemies, projecting horrifying visions and manipulating the battlefield directly from the ethereal plane."
     },
     relics: [
-      { name: "Velaer", type: "The-Living-Mantle", description: "A cloak woven from the souls of fallen Ascendants that moves with predatory sentience, forcefully phasing the wearer out of physical danger during moments of critical failure." },
+      { name: "Velaer", type: "The Living Mantle", description: "A cloak woven from the souls of fallen Ascendants that moves with predatory sentience, forcefully phasing the wearer out of physical danger during moments of critical failure." },
       { name: "The-Revenants-Bulwark", type: "Spectral-Shield", description: "Forged from floating fragments of ancient tombstones, this shield phases incoming weapons into the ethereal plane, rendering devastating martial or pyric attacks harmless." }
     ]
   },  
