@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TRADITIONS_DATA } from './data/traditions';
 
@@ -124,12 +125,12 @@ export default function Page() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
 
           <div className="flex items-center gap-4">
-            <div className="relative h-16 w-16 rounded-2xl overflow-hidden border border-yellow-400/10">
+            <div className="relative h-40 w-40 rounded-2xl overflow-hidden border border-yellow-400/10">
               <Image
                 src="/images/sprites/TotA Symbol 1.png"
                 alt="Logo"
                 fill
-                sizes="64px"
+                sizes="1080px"
                 priority
                 className="object-contain"
               />
@@ -140,40 +141,44 @@ export default function Page() {
                 THRONE OF THE ASCENDANT
               </div>
 
-              <div className="text-[10px] text-zinc-500 uppercase tracking-[0.3em] mt-0.5">
+              <div className="text-[14px] text-zinc-500 uppercase tracking-[0.3em] mt-0.5">
                 By Nitti Games
               </div>
             </div>
           </div>
 
           {/* NAVIGATION */}
-          <nav className="hidden md:flex items-center gap-6 text-xs font-bold uppercase tracking-widest text-zinc-400">
-            <a href="#traditions" className="hover:text-white transition">
-              Traditions
-            </a>
+          <nav className="flex flex-wrap justify-center gap-6 text-xs md:text-sm font-bold tracking-widest uppercase">
 
-            <a href="#world" className="hover:text-white transition">
-              World
-            </a>
+  <a href="#home" className="hover:text-amber-300 transition">
+    Home
+  </a>
 
-            <a href="#releases" className="hover:text-white transition">
-              Sets
-            </a>
+  <a href="#rulebook" className="hover:text-amber-300 transition">
+    Rulebook
+  </a>
 
-            <a href="#play" className="hover:text-white transition">
-              How to Play
-            </a>
+  <a href="#traditions" className="hover:text-amber-300 transition">
+    Traditions
+  </a>
 
-            <a href="#community" className="hover:text-white transition">
-              Community
-            </a>
-          </nav>
+  <a href="#regions" className="hover:text-amber-300 transition">
+    Regions
+  </a>
+
+  <a href="#contact" className="hover:text-amber-300 transition">
+    About Us
+  </a>
+
+</nav>
         </div>
       </header>
 
       {/* HERO */}
-      <section className="relative h-[550px] w-full overflow-hidden bg-black">
-
+<section
+  id="home"
+  className="relative h-[700px] w-full overflow-hidden bg-black"
+>
         <AnimatePresence mode="popLayout">
           <motion.div
             key={active.id}
@@ -243,19 +248,19 @@ export default function Page() {
         {/* HERO TEXT */}
         <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-6">
 
-          <div className="text-[11px] font-bold uppercase tracking-[0.4em] text-zinc-400 mb-4">
-            Tactical Physical Card Game
+          <div className="text-[16px] font-bold uppercase tracking-[0.4em] text-violet-500 mb-4">
+            Epic Fantasy Strategy Card Game
           </div>
 
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight max-w-5xl leading-none">
-            Ascend.
+            Forge
             <br />
-            Conquer.
+            Evolve
             <br />
-            Dominate.
+            Dominate
           </h1>
 
-          <p className="mt-6 max-w-2xl text-sm md:text-base text-zinc-400 leading-relaxed">
+          <p className="mt-6 max-w-2xl text-base md:text-base text-amber-300 leading-relaxed">
             Build your Warband. Master ancient Traditions.
             Crush rival factions in a dark fantasy battlefield where positioning,
             tempo and tactical sequencing decide the fate of empires.
@@ -267,13 +272,13 @@ export default function Page() {
               href="#traditions"
               className="px-6 py-3 rounded-xl bg-yellow-500 text-black font-black uppercase tracking-wider text-xs hover:bg-yellow-400 transition"
             >
-              Explore Traditions
+              How to Play
             </a>
 
             <button
               className="px-6 py-3 rounded-xl border border-white/10 bg-black/40 backdrop-blur text-white font-black uppercase tracking-wider text-xs hover:bg-white hover:text-black transition"
             >
-              Starter Set
+              Buy it Now
             </button>
 
           </div>
@@ -572,6 +577,40 @@ export default function Page() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* FOOTER */}
+<footer className="border-t border-white/10 bg-black py-12 mt-20">
+  <div className="max-w-7xl mx-auto px-6 text-center">
+
+    <div className="text-lg font-black tracking-widest text-white">
+      NITTI GAMES
+    </div>
+
+    <p className="mt-3 text-sm text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+  Independent publisher of premium strategy card games and fantasy worlds.
+</p>
+
+<p className="mt-2 text-sm text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+  Creator of <span className="text-amber-300 font-semibold">Throne of the Ascendant™</span>.
+</p>
+
+    <div className="mt-6 text-xs text-zinc-500 uppercase tracking-[0.25em]">
+      Chile
+    </div>
+    <div className="mt-8 flex justify-center gap-6 text-sm text-zinc-400">
+      <a
+        href="mailto:contact@nittigames.com"
+        className="hover:text-amber-300 transition-colors"
+      >
+
+      </a>
+    </div>
+
+    <div className="mt-8 text-xs text-zinc-600">
+      © {new Date().getFullYear()} Nitti Games. All rights reserved.
+    </div>
+
+  </div>
+</footer>
     </div>
   );
 }
