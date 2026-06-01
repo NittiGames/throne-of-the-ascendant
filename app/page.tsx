@@ -4,7 +4,12 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import { HOW_TO_PLAY_DATA } from './data/how-to-play';
+import { BUY_IT_NOW_DATA } from './data/buy-it-now';
+import { RULEBOOK_DATA } from './data/rulebook';
 import { TRADITIONS_DATA } from './data/traditions';
+import { REGIONS_DATA } from './data/regions';
+import { ABOUT_US_DATA } from './data/about-us';
 
 const SEQUENCES = [
   {
@@ -154,6 +159,14 @@ export default function Page() {
     Home
   </a>
 
+  <a href="#how-to-play" className="hover:text-amber-300 transition">
+    How to Play
+  </a>
+
+  <a href="#buy-it-now" className="hover:text-amber-300 transition">
+    Buy it Now
+  </a>
+
   <a href="#rulebook" className="hover:text-amber-300 transition">
     Rulebook
   </a>
@@ -166,7 +179,7 @@ export default function Page() {
     Regions
   </a>
 
-  <a href="#contact" className="hover:text-amber-300 transition">
+  <a href="#about-us" className="hover:text-amber-300 transition">
     About Us
   </a>
 
@@ -269,21 +282,73 @@ export default function Page() {
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
 
             <a
-              href="#traditions"
+              href="#how-to-play"
               className="px-6 py-3 rounded-xl bg-yellow-500 text-black font-black uppercase tracking-wider text-xs hover:bg-yellow-400 transition"
             >
               How to Play
             </a>
 
-            <button
+            <a
+              href="#buy-it-now"
               className="px-6 py-3 rounded-xl border border-white/10 bg-black/40 backdrop-blur text-white font-black uppercase tracking-wider text-xs hover:bg-white hover:text-black transition"
             >
               Buy it Now
-            </button>
+            </a>
 
           </div>
         </div>
       </section>
+
+<section
+  id="how-to-play"
+  className="bg-zinc-950 py-20"
+>
+  <div className="max-w-6xl mx-auto px-6">
+
+    <h2 className="text-4xl font-black uppercase mb-8">
+      {HOW_TO_PLAY_DATA.title}
+    </h2>
+
+    <p className="text-zinc-300 leading-relaxed">
+      {HOW_TO_PLAY_DATA.description}
+    </p>
+
+  </div>
+</section>
+
+<section
+  id="buy-it-now"
+  className="bg-black py-20 border-t border-white/10"
+>
+  <div className="max-w-6xl mx-auto px-6">
+
+    <h2 className="text-4xl font-black uppercase mb-8">
+      {BUY_IT_NOW_DATA.title}
+    </h2>
+
+    <p className="text-zinc-300 mb-8">
+      {BUY_IT_NOW_DATA.description}
+    </p>
+
+  </div>
+</section>
+
+<section
+  id="rulebook"
+  className="bg-zinc-950 py-20 border-t border-white/10"
+>
+  <div className="max-w-6xl mx-auto px-6">
+
+    <h2 className="text-4xl font-black uppercase mb-8">
+      {RULEBOOK_DATA.title}
+    </h2>
+
+    <p className="text-zinc-300">
+      {RULEBOOK_DATA.description}
+    </p>
+
+  </div>
+</section>
 
       {/* TRADITIONS */}
       <section
@@ -341,6 +406,40 @@ export default function Page() {
           </div>
         </div>
       </section>
+
+<section
+  id="regions"
+  className="bg-zinc-950 py-20 border-t border-white/10"
+>
+  <div className="max-w-6xl mx-auto px-6">
+
+    <h2 className="text-4xl font-black uppercase mb-8">
+      {REGIONS_DATA.title}
+    </h2>
+
+    <p className="text-zinc-300">
+      {REGIONS_DATA.description}
+    </p>
+
+  </div>
+</section>
+
+<section
+  id="about-us"
+  className="bg-black py-20 border-t border-white/10"
+>
+  <div className="max-w-6xl mx-auto px-6">
+
+    <h2 className="text-4xl font-black uppercase mb-8">
+      {ABOUT_US_DATA.title}
+    </h2>
+
+    <p className="text-zinc-300">
+      {ABOUT_US_DATA.description}
+    </p>
+
+  </div>
+</section>
 
       {/* POPUP */}
       <AnimatePresence>
