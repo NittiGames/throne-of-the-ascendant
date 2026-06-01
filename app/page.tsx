@@ -64,7 +64,8 @@ type TraditionKey = keyof typeof TRADITIONS_DATA;
 export default function Page() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedTradition, setSelectedTradition] = useState<string | null>(null);
-
+  const [menuOpen, setMenuOpen] = useState(false);
+  
   const active = SEQUENCES[activeIndex];
 
   useEffect(() => {
@@ -153,29 +154,70 @@ export default function Page() {
           </div>
 
           {/* NAVIGATION */}
-          <nav className="flex flex-wrap justify-center gap-6 text-xs md:text-sm font-bold tracking-widest uppercase">
+          <div className="relative">
 
-  <a href="#home" className="hover:text-amber-300 transition">
-    Home
-  </a>
+  <button
+    onClick={() => setMenuOpen(!menuOpen)}
+    className="px-4 py-2 rounded-xl border border-white/10 bg-black/40 backdrop-blur text-white font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition"
+  >
+    ☰ Menu
+  </button>
 
-  <a href="#rulebook" className="hover:text-amber-300 transition">
-    Rulebook
-  </a>
+  <AnimatePresence>
+    {menuOpen && (
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.2 }}
+        className="absolute right-0 mt-3 w-56 rounded-2xl border border-white/10 bg-black/95 backdrop-blur-xl overflow-hidden shadow-2xl"
+      >
 
-  <a href="#traditions" className="hover:text-amber-300 transition">
-    Traditions
-  </a>
+        <a
+          href="#home"
+          onClick={() => setMenuOpen(false)}
+          className="block px-5 py-4 hover:bg-white/5 transition"
+        >
+          Home
+        </a>
 
-  <a href="#regions" className="hover:text-amber-300 transition">
-    Regions
-  </a>
+        <a
+          href="#rulebook"
+          onClick={() => setMenuOpen(false)}
+          className="block px-5 py-4 hover:bg-white/5 transition"
+        >
+          Rulebook
+        </a>
 
-  <a href="#about-us" className="hover:text-amber-300 transition">
-    About Us
-  </a>
+        <a
+          href="#traditions"
+          onClick={() => setMenuOpen(false)}
+          className="block px-5 py-4 hover:bg-white/5 transition"
+        >
+          Traditions
+        </a>
 
-</nav>
+        <a
+          href="#regions"
+          onClick={() => setMenuOpen(false)}
+          className="block px-5 py-4 hover:bg-white/5 transition"
+        >
+          Regions
+        </a>
+
+        <a
+          href="#about-us"
+          onClick={() => setMenuOpen(false)}
+          className="block px-5 py-4 hover:bg-white/5 transition"
+        >
+          About Us
+        </a>
+
+      </motion.div>
+    )}
+  </AnimatePresence>
+
+</div>
         </div>
       </header>
 
