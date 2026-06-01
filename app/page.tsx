@@ -159,14 +159,6 @@ export default function Page() {
     Home
   </a>
 
-  <a href="#how-to-play" className="hover:text-amber-300 transition">
-    How to Play
-  </a>
-
-  <a href="#buy-it-now" className="hover:text-amber-300 transition">
-    Buy it Now
-  </a>
-
   <a href="#rulebook" className="hover:text-amber-300 transition">
     Rulebook
   </a>
