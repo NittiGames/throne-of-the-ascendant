@@ -1,41 +1,28 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+// app/layout.tsx
+import { Inter } from "next/font/google";
+import "./globals.css"; // Or whatever your global CSS file is named
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
+// 👑 THIS OBJECT MUST BE HERE, NOT IN PAGE.TSX
+export const metadata = {
   title: "Throne of the Ascendant",
-  description: "Epic Fantasy Strategy Card Game by Nitti Games",
-
+  description: "By Nitti Games",
   icons: {
-    icon: "/tota-web-logo.png",
-    shortcut: "/tota-web-logo.png",
-    apple: "/tota-web-logo.png",
+    icon: "/images/sprites/tota-web-logo.png",
+    shortcut: "/images/sprites/tota-web-logo.png",
+    apple: "/images/sprites/tota-web-logo.png",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        {children}
-      </body>
+    <html lang="en">
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

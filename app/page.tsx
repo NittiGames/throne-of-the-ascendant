@@ -127,51 +127,62 @@ export default function Page() {
       />
 
       {/* HEADER */}
-      <header className="sticky top-0 z-40 backdrop-blur-xl border-b border-white/10 bg-black/60 py-6">
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <header className="absolute top-0 left-0 right-0 z-40 pt-4">
+        <div className="max-w-7xl mx-auto px-6 relative flex items-start justify-between">
 
-          <div className="flex items-center gap-4">
-            <div className="relative h-40 w-40 rounded-2xl overflow-hidden border border-yellow-400/10">
-              <Image
-                src="/images/sprites/TotA Symbol 1.png"
-                alt="Logo"
-                fill
-                sizes="1080px"
-                priority
-                className="object-contain"
-              />
-            </div>
+  {/* ESPACIADOR IZQUIERDO */}
+  <div className="w-32" />
 
-            <div>
-              <div className="font-black tracking-widest text-base md:text-lg">
-                THRONE OF THE ASCENDANT
-              </div>
+  {/* LOGO CENTRADO */}
+  <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
 
-              <div className="text-[14px] text-zinc-500 uppercase tracking-[0.3em] mt-0.5">
-                By Nitti Games
-              </div>
-            </div>
-          </div>
+    <div className="relative h-48 w-48 overflow-hidden">
+      <Image
+        src="/images/sprites/TotA Symbol 1.png"
+        alt="Logo"
+        fill
+        sizes="1080px"
+        priority
+        className="object-contain"
+      />
+    </div>
 
-          {/* NAVIGATION */}
-          <div className="relative">
+  </div>
 
-  <button
-    onClick={() => setMenuOpen(!menuOpen)}
-    className="px-4 py-2 rounded-xl border border-white/10 bg-black/40 backdrop-blur text-white font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition"
-  >
-    ☰ Menu
-  </button>
+  {/* MENÚ */}
+  <div className="fixed top-6 right-6 z-50">
 
-  <AnimatePresence>
-    {menuOpen && (
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.2 }}
-        className="absolute right-0 mt-3 w-56 rounded-2xl border border-white/10 bg-black/95 backdrop-blur-xl overflow-hidden shadow-2xl"
-      >
+    <button
+  onClick={() => setMenuOpen(!menuOpen)}
+  className="
+    px-5 py-3
+    rounded-2xl
+    bg-black/60
+    backdrop-blur-xl
+    border border-white/10
+    text-white
+    font-bold
+    uppercase
+    tracking-[0.2em]
+    text-xs
+    shadow-xl
+    hover:bg-white
+    hover:text-black
+    transition-all
+  "
+>
+      ☰ Menu
+    </button>
+
+    <AnimatePresence>
+      {menuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.2 }}
+          className="absolute top-full right-0 mt-3 w-56 rounded-2xl border border-white/10 bg-black/95 backdrop-blur-xl overflow-hidden shadow-2xl"
+        >
 
         <a
           href="#home"
@@ -224,7 +235,7 @@ export default function Page() {
       {/* HERO */}
 <section
   id="home"
-  className="relative h-[700px] w-full overflow-hidden bg-black"
+  className="relative h-[700px] w-full overflow-hidden bg-black -mt[176px]"
 >
         <AnimatePresence mode="popLayout">
           <motion.div
@@ -293,7 +304,7 @@ export default function Page() {
         </AnimatePresence>
 
         {/* HERO TEXT */}
-        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-6">
+        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-6 translate-y-24">
 
           <div className="text-[16px] font-bold uppercase tracking-[0.4em] text-violet-500 mb-4">
             Epic Fantasy Strategy Card Game
