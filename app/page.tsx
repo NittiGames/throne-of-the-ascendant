@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -65,7 +65,8 @@ export default function Page() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedTradition, setSelectedTradition] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  
+
+  const audioRef = useRef<HTMLAudioElement>(null);
   const active = SEQUENCES[activeIndex];
 
   useEffect(() => {
@@ -84,6 +85,19 @@ export default function Page() {
     };
   }, [selectedTradition]);
 
+  useEffect(() => {
+  const startMusic = () => {
+    audioRef.current?.play().catch(() => {});
+    window.removeEventListener('click', startMusic);
+  };
+
+  window.addEventListener('click', startMusic);
+
+  return () => {
+    window.removeEventListener('click', startMusic);
+  };
+}, []);
+
   const traditionsList = Object.keys(TRADITIONS_DATA);
 
   const currentLore : any =
@@ -93,6 +107,17 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden font-sans select-none relative">
+
+<audio
+  ref={audioRef}
+  loop
+  preload="auto"
+>
+  <source
+    src="/images/sprites/Hearth-and-Horn.mp3"
+    type="audio/mpeg"
+  />
+</audio>
 
       <style
         dangerouslySetInnerHTML={{
@@ -304,11 +329,7 @@ export default function Page() {
         </AnimatePresence>
 
         {/* HERO TEXT */}
-        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-6 translate-y-24">
-
-          <div className="text-[16px] font-bold uppercase tracking-[0.4em] text-violet-500 mb-4">
-            Epic Fantasy Strategy Card Game
-          </div>
+        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-6 translate-y-2">
 
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight max-w-5xl leading-none">
             Forge
@@ -317,12 +338,6 @@ export default function Page() {
             <br />
             Dominate
           </h1>
-
-          <p className="mt-6 max-w-2xl text-base md:text-base text-amber-300 leading-relaxed">
-            Build your Warband. Master ancient Traditions.
-            Crush rival factions in a dark fantasy battlefield where positioning,
-            tempo and tactical sequencing decide the fate of empires.
-          </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
 

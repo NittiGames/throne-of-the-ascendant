@@ -1,10 +1,17 @@
-// app/layout.tsx
-import { Inter } from "next/font/google";
-import "./globals.css"; // Or whatever your global CSS file is named
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
 
-// 👑 THIS OBJECT MUST BE HERE, NOT IN PAGE.TSX
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
 export const metadata = {
   title: "Throne of the Ascendant",
   description: "By Nitti Games",
@@ -17,12 +24,17 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">
+        {children}
+      </body>
     </html>
   );
 }
